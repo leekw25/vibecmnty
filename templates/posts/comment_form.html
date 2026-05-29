@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-2xl fade-up">
+  <h2 class="mb-4 text-xl font-bold">{{ title }}</h2>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    <label class="block text-sm font-medium text-slate-700">댓글</label>
+    {{ form.content }}
+
+    {% if form.content.errors %}
+      <p class="text-sm text-rose-600">{{ form.content.errors|striptags }}</p>
+    {% endif %}
+
+    <div class="flex gap-2">
+      <button type="submit" class="vibe-btn vibe-btn-primary">{{ submit_label }}</button>
+      <a href="{% url 'posts:detail' post.id %}" class="vibe-btn vibe-btn-ghost">취소</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

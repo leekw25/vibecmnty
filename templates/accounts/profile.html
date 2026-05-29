@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-2xl fade-up">
+  <h2 class="text-xl font-semibold mb-4">내 프로필</h2>
+
+  <div class="grid gap-4 md:grid-cols-[120px,1fr]">
+    <div>
+      {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="avatar" class="h-24 w-24 rounded-full border object-cover">
+      {% else %}
+        <div class="h-24 w-24 rounded-full border bg-slate-100 flex items-center justify-center text-sm text-slate-500">
+          No image
+        </div>
+      {% endif %}
+    </div>
+    <div class="space-y-2">
+      <p><span class="font-medium text-slate-700">아이디:</span> {{ user.username }}</p>
+      <p><span class="font-medium text-slate-700">표시명:</span> {{ user.display_name|default:user.username }}</p>
+      <p><span class="font-medium text-slate-700">이메일:</span> {{ user.email|default:"미등록" }}</p>
+      <p><span class="font-medium text-slate-700">권한:</span> {{ user.get_role_display }}</p>
+      <p class="text-sm text-slate-500">관리자 권한: {% if user.is_admin_member %}허용{% else %}미허용{% endif %}</p>
+      {% if user.bio %}
+        <p class="text-sm text-slate-700 mt-2">{{ user.bio }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="mt-6 flex gap-2">
+    <a href="{% url 'accounts:profile_edit' %}" class="vibe-btn vibe-btn-primary">프로필 수정</a>
+    <a href="{% url 'accounts:password_change' %}" class="vibe-btn vibe-btn-ghost">비밀번호 변경</a>
+  </div>
+</section>
+{% endblock %}

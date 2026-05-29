@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card space-y-4 fade-up">
+  <div class="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <h2 class="text-2xl font-bold">자유게시판</h2>
+    <div class="flex w-full flex-col gap-2 sm:flex-row sm:w-auto">
+      <form method="get" class="flex w-full items-center gap-2 sm:w-auto">
+        <input
+          type="text"
+          name="q"
+          value="{{ q }}"
+          class="vibe-input w-full sm:w-64"
+          placeholder="제목+내용 검색"
+        />
+        <button type="submit" class="vibe-btn vibe-btn-primary">검색</button>
+      </form>
+      {% if user.is_authenticated %}
+        <a href="{% url 'posts:create' %}" class="vibe-btn vibe-btn-success text-center">글쓰기</a>
+      {% else %}
+        <a href="{% url 'accounts:login' %}?next=/posts/new/" class="vibe-btn vibe-btn-success text-center">로그인 후 글쓰기</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="space-y-3">
+    {% for post in page_obj %}
+      <article class="rounded-xl border border-slate-200 bg-white/75 p-4">
+        <a href="{% url 'posts:detail' post.id %}" class="text-lg font-semibold text-indigo-700 hover:text-indigo-900 hover:underline">
+          {{ post.title }}
+        </a>
+        <div class="mt-2 flex flex-wrap gap-2 text-xs text-slate-600 sm:text-sm">
+          <span>작성자: {{ post.author }}</span>
+          <span>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</span>
+          <span>조회: {{ post.views }}</span>
+          <span>좋아요: {{ post.likes_count }}</span>
+          <span>댓글: {{ post.comments_count }}</span>
+        </div>
+      </article>
+    {% empty %}
+      <p class="rounded border border-dashed border-slate-300 bg-white/65 p-4 text-sm text-slate-500">게시글이 없습니다.</p>
+    {% endfor %}
+  </div>
+
+  {% if page_obj.paginator.num_pages > 1 %}
+    <div class="mt-2 flex flex-wrap items-center justify-center gap-2 text-sm">
+      {% if page_obj.has_previous %}
+        <a class="vibe-btn vibe-btn-ghost py-1" href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q|urlencode }}{% endif %}">이전</a>
+      {% else %}
+        <span class="vibe-btn vibe-btn-ghost text-slate-400 py-1">이전</span>
+      {% endif %}
+
+      <span class="vibe-btn vibe-btn-ghost py-1">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+      {% if page_obj.has_next %}
+        <a class="vibe-btn vibe-btn-ghost py-1" href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q|urlencode }}{% endif %}">다음</a>
+      {% else %}
+        <span class="vibe-btn vibe-btn-ghost text-slate-400 py-1">다음</span>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-5">
+  <div class="vibe-card fade-up">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <h2 class="text-2xl font-bold text-slate-900">{{ poll.question }}</h2>
+      <span class="vibe-chip {% if poll.is_closed %}bg-rose-100 text-rose-700{% else %}bg-emerald-100 text-emerald-700{% endif %}">
+        {{ poll.status_label }}
+      </span>
+    </div>
+    <p class="mt-2 text-sm text-slate-600">
+      작성자: {{ poll.created_by }} / 마감: {{ poll.expires_at|date:"Y-m-d H:i"|default:"미설정" }} / 참여: {{ total_votes }}명
+    </p>
+  </div>
+
+  <div class="vibe-card space-y-4 fade-up">
+    <p class="font-semibold text-slate-900">결과</p>
+    {% for option in options %}
+      <div>
+        <div class="mb-1 flex items-center justify-between text-sm">
+          <span>{{ option.text }}</span>
+          <span class="text-xs text-slate-600">{{ option.votes_count }}개 ({{ option.vote_rate }}%)</span>
+        </div>
+        <div class="h-3 w-full rounded-full bg-slate-200">
+          <div
+            class="h-full rounded-full bg-indigo-500 transition-all"
+            style="width: {{ option.vote_rate }}%;"
+          ></div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-sm text-slate-500">결과 데이터가 없습니다.</p>
+    {% endfor %}
+  </div>
+
+  {% if not poll.is_closed and request.user.is_authenticated and not has_voted %}
+    <a href="{% url 'polls:detail' poll.id %}" class="inline-block vibe-btn vibe-btn-primary">투표 참여</a>
+  {% elif not poll.is_closed and not request.user.is_authenticated %}
+    <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="inline-block vibe-btn vibe-btn-primary">로그인 후 참여</a>
+  {% endif %}
+</section>
+{% endblock %}

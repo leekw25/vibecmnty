@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card space-y-4 fade-up">
+  <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+    <h2 class="text-2xl font-bold">공지사항</h2>
+    {% if user.is_authenticated and user.is_admin_member %}
+      <a href="{% url 'notices:create' %}" class="vibe-btn vibe-btn-primary">새 공지 작성</a>
+    {% endif %}
+  </div>
+
+  <div class="space-y-3">
+    {% for notice in page_obj %}
+      <article class="rounded-xl border border-slate-200 bg-white/70 p-4">
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <a href="{% url 'notices:detail' notice.id %}" class="text-lg font-semibold text-indigo-700 hover:text-indigo-900 hover:underline">{{ notice.title }}</a>
+          {% if notice.is_important %}
+            <span class="vibe-chip inline-flex bg-rose-100 text-rose-700">중요</span>
+          {% endif %}
+        </div>
+        <p class="text-sm text-slate-500">{{ notice.created_at|date:"Y-m-d H:i" }} / {{ notice.author }}</p>
+        <p class="mt-2 text-sm text-slate-700">{{ notice.content|truncatechars:180 }}</p>
+      </article>
+    {% empty %}
+      <p class="rounded border border-dashed border-slate-300 bg-white/65 p-4 text-sm text-slate-500">등록된 공지사항이 없습니다.</p>
+    {% endfor %}
+  </div>
+
+  {% if page_obj.paginator.num_pages > 1 %}
+    <div class="mt-2 flex flex-wrap items-center justify-center gap-2 text-sm">
+      {% if page_obj.has_previous %}
+        <a class="vibe-btn vibe-btn-ghost py-1" href="?page={{ page_obj.previous_page_number }}">이전</a>
+      {% else %}
+        <span class="vibe-btn vibe-btn-ghost text-slate-400 py-1">이전</span>
+      {% endif %}
+
+      <span class="vibe-btn vibe-btn-ghost py-1">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+      {% if page_obj.has_next %}
+        <a class="vibe-btn vibe-btn-ghost py-1" href="?page={{ page_obj.next_page_number }}">다음</a>
+      {% else %}
+        <span class="vibe-btn vibe-btn-ghost text-slate-400 py-1">다음</span>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

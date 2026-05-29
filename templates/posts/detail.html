@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-4">
+  <article class="vibe-card fade-up">
+    <h1 class="text-2xl font-bold">{{ post.title }}</h1>
+    <p class="mt-2 text-sm text-slate-500">
+      작성자: {{ post.author }} / 작성일: {{ post.created_at|date:"Y-m-d H:i" }} / 조회수: {{ post.views }}
+    </p>
+    <div class="mt-4 whitespace-pre-wrap break-words leading-relaxed">{{ post.content }}</div>
+
+    <div id="like-panel" class="mt-4">
+      {% include "posts/partials/like_button.html" %}
+    </div>
+
+    {% if can_edit %}
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a href="{% url 'posts:update' post.id %}" class="vibe-btn vibe-btn-primary">수정</a>
+        <form method="post" action="{% url 'posts:delete' post.id %}">
+          {% csrf_token %}
+          <button type="submit" class="vibe-btn vibe-btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</button>
+        </form>
+      </div>
+    {% endif %}
+  </article>
+
+  <div>
+    {% include "posts/partials/comment_section.html" %}
+  </div>
+</section>
+{% endblock %}

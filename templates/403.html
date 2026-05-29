@@ -1,0 +1,22 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-2xl mx-auto">
+  <p class="text-sm font-semibold uppercase tracking-[0.16em] text-rose-600">Access Denied</p>
+  <h1 class="mt-2 text-3xl font-black">403 Forbidden</h1>
+  <p class="mt-2 text-slate-700">
+    {{ message|default:"이 페이지는 관리자만 접근할 수 있습니다." }}
+  </p>
+  <p class="mt-1 text-sm text-slate-500">
+    {{ help_text|default:"관리자 권한이 있는 계정으로 로그인해 주세요." }}
+  </p>
+  <div class="mt-4 flex flex-wrap gap-2">
+    <a href="{% url 'home' %}" class="vibe-btn vibe-btn-primary">메인으로 이동</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'admin_dashboard:home' %}" class="vibe-btn vibe-btn-ghost">대시보드 다시 시도</a>
+    {% else %}
+      <a href="{% url 'accounts:login' %}" class="vibe-btn vibe-btn-ghost">로그인</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

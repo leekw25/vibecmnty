@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-3xl fade-up">
+  <h2 class="mb-4 text-xl font-bold text-slate-900">{{ title }}</h2>
+
+  <form method="post" class="space-y-5">
+    {% csrf_token %}
+
+    <div>
+      <label class="mb-1 block text-sm font-semibold text-slate-700">{{ poll_form.question.label }}</label>
+      {{ poll_form.question }}
+      {% if poll_form.question.help_text %}<p class="mt-1 text-xs text-slate-500">{{ poll_form.question.help_text }}</p>{% endif %}
+      {% if poll_form.question.errors %}<p class="mt-1 text-sm text-rose-600">{{ poll_form.question.errors|striptags }}</p>{% endif %}
+    </div>
+
+    <div>
+      <label class="mb-1 block text-sm font-semibold text-slate-700">마감일</label>
+      {{ poll_form.expires_at }}
+      {% if poll_form.expires_at.errors %}<p class="mt-1 text-sm text-rose-600">{{ poll_form.expires_at.errors|striptags }}</p>{% endif %}
+      <p class="mt-1 text-xs text-slate-500">투표 마감 시간을 지정하세요.</p>
+    </div>
+
+    <div>
+      <h3 class="mb-2 font-semibold text-slate-900">선택지</h3>
+      <p class="mb-3 text-sm text-slate-600">최소 2개 이상, 최대 10개까지 등록</p>
+      {{ option_formset.management_form }}
+      {% for form in option_formset %}
+        <div class="mb-3">
+          {{ form.text }}
+          {% if form.text.errors %}
+            <p class="mt-1 text-sm text-rose-600">{{ form.text.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      {% if option_formset.non_form_errors %}
+        <p class="text-sm text-rose-600">{{ option_formset.non_form_errors }}</p>
+      {% endif %}
+    </div>
+
+    <div class="flex gap-2">
+      <button type="submit" class="vibe-btn vibe-btn-primary">투표 생성</button>
+      <a href="{% url 'polls:list' %}" class="vibe-btn vibe-btn-ghost">취소</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

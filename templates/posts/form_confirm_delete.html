@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-lg fade-up">
+  <h2 class="text-xl font-semibold mb-4">{{ title }}</h2>
+  <p class="mb-4 text-slate-700">정말 "{{ post.title }}" 게시글을 삭제하시겠습니까?</p>
+
+  <form method="post" class="flex gap-2">
+    {% csrf_token %}
+    <button type="submit" class="vibe-btn vibe-btn-danger">삭제</button>
+    <a href="{% url 'posts:detail' post.id %}" class="vibe-btn vibe-btn-ghost">취소</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-4">
+  <div class="vibe-card flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h2 class="text-xl font-bold">{{ year }}년 {{ month }}월 일정</h2>
+      <p class="text-sm text-slate-500">오늘: {{ today|date:"Y-m-d" }}</p>
+    </div>
+    <div class="flex items-center gap-2 text-sm">
+      <a href="?year={{ prev_year }}&month={{ prev_month }}" class="vibe-btn vibe-btn-ghost">이전</a>
+      <a href="?year={{ today.year }}&month={{ today.month }}" class="vibe-btn vibe-btn-ghost">오늘</a>
+      <a href="?year={{ next_year }}&month={{ next_month }}" class="vibe-btn vibe-btn-ghost">다음</a>
+    </div>
+    {% if is_admin_user %}
+      <a href="{% url 'events:new' %}" class="vibe-btn vibe-btn-primary">일정 추가</a>
+    {% endif %}
+  </div>
+
+  <div class="vibe-card overflow-x-auto">
+    <table class="min-w-full border-collapse text-sm">
+      <thead>
+        <tr class="bg-slate-100/80 text-slate-700">
+          {% for weekday in weekdays %}
+            <th class="border p-2">{{ weekday }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for week in calendar_rows %}
+          <tr>
+            {% for cell in week %}
+              {% with day=cell.date day_events=cell.events %}
+                <td class="relative h-28 w-20 border p-2 align-top {% if day == today %}bg-emerald-50{% elif day.month != month %}bg-slate-100/60 text-slate-400{% endif %}">
+                  <div class="flex items-center justify-between">
+                    <a
+                      href="?year={{ day.year }}&month={{ day.month }}&day={{ day|date:'Y-m-d' }}"
+                      class="text-sm font-semibold {% if day == today %}text-emerald-700{% endif %}">
+                      {{ day.day }}
+                    </a>
+                    <a
+                      href="{% url 'events:new' %}?start_date={{ day|date:'Y-m-d' }}"
+                      class="text-indigo-600" aria-label="해당 날짜 일정 등록">+</a>
+                  </div>
+                  <div class="mt-1 text-xs text-emerald-700">
+                    {% if day_events %}
+                      <span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>{{ day_events|length }}
+                    {% endif %}
+                  </div>
+                  <div class="mt-1 space-y-1">
+                    {% for event in day_events|slice:":2" %}
+                      <a href="{% url 'events:detail' event.id %}" class="block rounded bg-indigo-100/80 px-2 py-1 text-xs text-indigo-800 hover:underline">
+                        {{ event.title }}
+                      </a>
+                    {% endfor %}
+                    {% if day_events|length > 2 %}
+                      <span class="text-xs text-slate-500">+{{ day_events|length|add:'-2' }}개 더보기</span>
+                    {% endif %}
+                  </div>
+                </td>
+              {% endwith %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <section class="vibe-card">
+    {% if selected_day %}
+      <h3 class="text-lg font-semibold">{{ selected_day|date:"Y-m-d" }} 일정</h3>
+      <ul class="mt-2 space-y-2">
+        {% for event in selected_day_events %}
+          <li>
+            <a href="{% url 'events:detail' event.id %}" class="block rounded bg-white/75 p-2 hover:bg-slate-100">
+              <span class="font-semibold">{{ event.title }}</span>
+              <span class="text-sm text-slate-500"> 장소: {{ event.location|default:'- 미지정 -' }}</span>
+            </a>
+          </li>
+        {% empty %}
+          <li class="text-sm text-slate-500">해당 날짜 일정이 없습니다.</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-sm text-slate-500">캘린더에서 날짜를 클릭하면 해당 날짜 일정 목록을 확인할 수 있습니다.</p>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

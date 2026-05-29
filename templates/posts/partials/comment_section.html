@@ -1,0 +1,58 @@
+<section class="vibe-card fade-up">
+  <h2 class="mb-4 text-lg font-bold">댓글 {{ comment_count }}</h2>
+
+  <form
+    hx-post="{% url 'posts:comment_create' post.id %}"
+    hx-target="#comments-wrap"
+    hx-swap="innerHTML"
+    class="mb-4 space-y-2"
+  >
+    {% csrf_token %}
+    {{ comment_form.content }}
+    <button type="submit" class="vibe-btn vibe-btn-primary text-sm">댓글 등록</button>
+  </form>
+
+  <div id="comments-wrap" class="space-y-3">
+    {% for comment in comments %}
+      <article
+        class="rounded-xl border border-slate-200 bg-white/75 p-3"
+        style="margin-left: {{ comment.depth|add:0|floatformat:0 }}rem"
+      >
+        <p class="text-sm text-slate-600">
+          <span class="font-semibold">{{ comment.author }}</span>
+          <span class="ml-2">{{ comment.created_at|date:'Y-m-d H:i' }}</span>
+        </p>
+        <p class="mt-1 whitespace-pre-wrap break-words">{{ comment.content }}</p>
+
+        {% if comment.can_edit %}
+          <div class="mt-2 flex gap-2">
+            <a href="{% url 'posts:comment_update' post.id comment.id %}" class="vibe-btn vibe-btn-ghost py-1 text-xs">수정</a>
+            <form
+              hx-post="{% url 'posts:comment_delete' post.id comment.id %}"
+              hx-target="#comments-wrap"
+              hx-swap="innerHTML"
+              class="inline"
+            >
+              {% csrf_token %}
+              <button type="submit" class="vibe-btn vibe-btn-danger py-1 text-xs">삭제</button>
+            </form>
+          </div>
+        {% endif %}
+
+        <form
+          hx-post="{% url 'posts:comment_create' post.id %}"
+          hx-target="#comments-wrap"
+          hx-swap="innerHTML"
+          class="mt-2 space-y-2"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="parent_id" value="{{ comment.id }}">
+          <textarea name="content" class="w-full rounded-xl border border-slate-200 px-3 py-2 h-20" placeholder="답글 작성"></textarea>
+          <button type="submit" class="vibe-btn vibe-btn-success text-sm">답글</button>
+        </form>
+      </article>
+    {% empty %}
+      <p class="text-sm text-slate-600">아직 댓글이 없습니다.</p>
+    {% endfor %}
+  </div>
+</section>

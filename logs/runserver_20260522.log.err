@@ -1,0 +1,1925 @@
+Watching for file changes with StatReloader
+[22/May/2026 20:07:31] "GET / HTTP/1.1" 200 1670
+Not Found: /favicon.ico
+[22/May/2026 20:07:32] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:07:42] "GET /notices/ HTTP/1.1" 200 1707
+[22/May/2026 20:07:43] "GET /posts/ HTTP/1.1" 200 2210
+[22/May/2026 20:07:44] "GET /events/ HTTP/1.1" 200 1840
+[22/May/2026 20:07:45] "GET /polls/ HTTP/1.1" 200 2161
+[22/May/2026 20:07:45] "GET /surveys/ HTTP/1.1" 200 1563
+[22/May/2026 20:07:46] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:07:46] "GET / HTTP/1.1" 200 1917
+[22/May/2026 20:07:50] "GET /notices/ HTTP/1.1" 200 1707
+[22/May/2026 20:08:09] "GET /notices/ HTTP/1.1" 200 1707
+[22/May/2026 20:08:16] "GET /notices/ HTTP/1.1" 200 1707
+[22/May/2026 20:08:19] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:08:19] "GET / HTTP/1.1" 200 1917
+[22/May/2026 20:08:21] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:08:21] "GET / HTTP/1.1" 200 1858
+[22/May/2026 20:08:23] "GET /signup/ HTTP/1.1" 200 3747
+[22/May/2026 20:08:23,480] - Broken pipe from ('127.0.0.1', 65462)
+[22/May/2026 20:08:25] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:08:38] "POST /login/ HTTP/1.1" 200 3154
+[22/May/2026 20:08:45] "POST /login/ HTTP/1.1" 200 3154
+[22/May/2026 20:09:44] "POST /login/ HTTP/1.1" 302 0
+[22/May/2026 20:09:44] "GET / HTTP/1.1" 200 2106
+[22/May/2026 20:09:46] "GET /notices/ HTTP/1.1" 200 1818
+[22/May/2026 20:09:48] "GET /notices/new/ HTTP/1.1" 200 2602
+Internal Server Error: /notices/new/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table notices_notice has no column named is_important
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\notices\views.py", line 26, in wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\notices\views.py", line 53, in notice_create
+    notice.save()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: table notices_notice has no column named is_important
+[22/May/2026 20:09:59] "POST /notices/new/ HTTP/1.1" 500 158578
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[22/May/2026 20:10:07] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5530
+[22/May/2026 20:11:25] "POST /notices/new/ HTTP/1.1" 302 0
+[22/May/2026 20:11:25] "GET /notices/1/ HTTP/1.1" 200 2906
+C:\Project\vibe_community\posts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 116, in populate
+    app_config.import_models()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\posts\models.py", line 39, in <module>
+    class Like(models.Model):
+  File "C:\Project\vibe_community\posts\models.py", line 52, in Like
+    parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
+             ^^^^^^^^^^^^^^
+NameError: name 'TreeForeignKey' is not defined
+C:\Project\vibe_community\posts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 116, in populate
+    app_config.import_models()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\posts\models.py", line 39, in <module>
+    class Like(models.Model):
+  File "C:\Project\vibe_community\posts\models.py", line 52, in Like
+    parent = ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
+             ^^^^^^^^^^
+NameError: name 'ForeignKey' is not defined
+C:\Project\vibe_community\posts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 116, in populate
+    app_config.import_models()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\posts\models.py", line 39, in <module>
+    class Like(models.Model):
+  File "C:\Project\vibe_community\posts\models.py", line 55, in Like
+    created_at = models.DateTimeField(default=timezone.now)
+                                              ^^^^^^^^
+NameError: name 'timezone' is not defined
+C:\Project\vibe_community\posts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\base.py", line 569, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+posts.Comment.post: (fields.E304) Reverse accessor 'Post.comments' for 'posts.Comment.post' clashes with reverse accessor for 'posts.Like.post'.
+	HINT: Add or change a related_name argument to the definition for 'posts.Comment.post' or 'posts.Like.post'.
+posts.Comment.post: (fields.E305) Reverse query name for 'posts.Comment.post' clashes with reverse query name for 'posts.Like.post'.
+	HINT: Add or change a related_name argument to the definition for 'posts.Comment.post' or 'posts.Like.post'.
+posts.Like.post: (fields.E304) Reverse accessor 'Post.comments' for 'posts.Like.post' clashes with reverse accessor for 'posts.Comment.post'.
+	HINT: Add or change a related_name argument to the definition for 'posts.Like.post' or 'posts.Comment.post'.
+posts.Like.post: (fields.E305) Reverse query name for 'posts.Like.post' clashes with reverse query name for 'posts.Comment.post'.
+	HINT: Add or change a related_name argument to the definition for 'posts.Like.post' or 'posts.Comment.post'.
+
+System check identified 4 issues (0 silenced).
+C:\Project\vibe_community\posts\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\posts\migrations\0002_alter_post_models.py changed, reloading.
+Watching for file changes with StatReloader
+[22/May/2026 20:14:53] "GET /events/ HTTP/1.1" 200 2250
+[22/May/2026 20:15:04] "GET /posts/ HTTP/1.1" 200 3757
+[22/May/2026 20:15:06] "GET /posts/3/ HTTP/1.1" 200 3614
+[22/May/2026 20:15:08] "POST /posts/3/like/ HTTP/1.1" 200 517
+[22/May/2026 20:15:12] "GET /posts/3/edit/ HTTP/1.1" 200 2558
+[22/May/2026 20:15:23] "POST /posts/3/edit/ HTTP/1.1" 302 0
+[22/May/2026 20:15:23] "GET /posts/3/ HTTP/1.1" 200 3901
+[22/May/2026 20:15:32] "POST /posts/3/comments/ HTTP/1.1" 200 2286
+[22/May/2026 20:15:32] "POST /posts/3/comments/ HTTP/1.1" 200 3851
+[22/May/2026 20:15:36] "POST /posts/3/comments/2/delete/ HTTP/1.1" 200 2286
+[22/May/2026 20:15:42] "POST /posts/3/comments/ HTTP/1.1" 200 3851
+C:\Project\vibe_community\events\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\base.py", line 492, in check
+    all_issues = checks.run_checks(
+                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\config\urls.py", line 14, in <module>
+    path("events/", include("events.urls")),
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\events\urls.py", line 3, in <module>
+    from . import views
+  File "C:\Project\vibe_community\events\views.py", line 8, in <module>
+    from .forms import EventForm
+  File "C:\Project\vibe_community\events\forms.py", line 8, in <module>
+    class EventForm(forms.ModelForm):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\forms\models.py", line 334, in __new__
+    raise FieldError(message)
+django.core.exceptions.FieldError: Unknown field(s) (end_at, is_all_day, category, is_published, start_at) specified for Event
+C:\Project\vibe_community\events\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\base.py", line 569, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[1]' refers to 'category', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[2]' refers to 'start_at', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[3]' refers to 'end_at', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[4]' refers to 'is_all_day', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[5]' refers to 'is_published', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[0]' refers to 'category', which does not refer to a Field.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[1]' refers to 'is_all_day', which does not refer to a Field.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[2]' refers to 'is_published', which does not refer to a Field.
+
+System check identified 8 issues (0 silenced).
+C:\Project\vibe_community\events\views.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\base.py", line 569, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[1]' refers to 'category', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[2]' refers to 'start_at', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[3]' refers to 'end_at', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[4]' refers to 'is_all_day', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E108) The value of 'list_display[5]' refers to 'is_published', which is not a callable or attribute of 'EventAdmin', or an attribute, method, or field on 'events.Event'.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[0]' refers to 'category', which does not refer to a Field.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[1]' refers to 'is_all_day', which does not refer to a Field.
+<class 'events.admin.EventAdmin'>: (admin.E116) The value of 'list_filter[2]' refers to 'is_published', which does not refer to a Field.
+
+System check identified 8 issues (0 silenced).
+C:\Project\vibe_community\events\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\events\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\events\migrations\0002_rework_event_model.py changed, reloading.
+Watching for file changes with StatReloader
+[22/May/2026 20:21:10] "GET /events HTTP/1.1" 301 0
+[22/May/2026 20:21:10] "GET /events/ HTTP/1.1" 200 38074
+[22/May/2026 20:21:10,548] - Broken pipe from ('127.0.0.1', 62971)
+[22/May/2026 20:22:25] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:22:34] "GET /events/ HTTP/1.1" 200 38248
+[22/May/2026 20:22:38] "GET /events/new/?start_date=2026-05-22 HTTP/1.1" 200 2988
+[22/May/2026 20:23:20] "POST /events/new/?start_date=2026-05-22 HTTP/1.1" 302 0
+[22/May/2026 20:23:20] "GET /events/2/ HTTP/1.1" 200 2787
+[22/May/2026 20:23:24] "GET /notices/ HTTP/1.1" 200 2349
+[22/May/2026 20:23:26] "GET /profile/ HTTP/1.1" 200 2555
+[22/May/2026 20:23:28] "GET / HTTP/1.1" 200 1659
+[22/May/2026 20:23:30] "GET / HTTP/1.1" 200 1659
+[22/May/2026 20:25:10] "GET /surveys/ HTTP/1.1" 200 1552
+[22/May/2026 20:25:14] "GET /surveys/ HTTP/1.1" 200 1552
+[22/May/2026 20:25:16] "GET /polls/ HTTP/1.1" 200 2267
+[22/May/2026 20:25:17] "GET /surveys/ HTTP/1.1" 200 1552
+[22/May/2026 20:25:26] "GET /events/ HTTP/1.1" 200 38575
+[22/May/2026 20:25:28] "GET /admin-dashboard/ HTTP/1.1" 200 1983
+[22/May/2026 20:25:29] "GET /events/ HTTP/1.1" 200 38575
+[22/May/2026 20:25:30] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:25:31] "GET /notices/ HTTP/1.1" 200 2349
+[22/May/2026 20:25:32] "GET /notices/ HTTP/1.1" 200 2349
+[22/May/2026 20:25:33] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:25:34] "GET /polls/ HTTP/1.1" 200 2267
+[22/May/2026 20:25:35] "GET /surveys/ HTTP/1.1" 200 1552
+[22/May/2026 20:25:40] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:25:40] "GET / HTTP/1.1" 200 6322
+[22/May/2026 20:25:45] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:25:48] "GET / HTTP/1.1" 200 6066
+[22/May/2026 20:25:48,445] - Broken pipe from ('127.0.0.1', 64920)
+[22/May/2026 20:25:48] "POST /login/ HTTP/1.1" 200 3145
+[22/May/2026 20:25:58] "POST /login/ HTTP/1.1" 200 3153
+[22/May/2026 20:26:01] "POST /login/ HTTP/1.1" 200 3153
+[22/May/2026 20:26:04] "POST /login/ HTTP/1.1" 302 0
+[22/May/2026 20:26:04] "GET / HTTP/1.1" 200 6847
+Not Found: /adimin
+[22/May/2026 20:26:10] "GET /adimin HTTP/1.1" 404 5404
+[22/May/2026 20:26:16] "GET /admin HTTP/1.1" 301 0
+[22/May/2026 20:26:16] "GET /admin/ HTTP/1.1" 200 20311
+[22/May/2026 20:26:16] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+[22/May/2026 20:26:16] "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+[22/May/2026 20:26:16] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[22/May/2026 20:26:16] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+[22/May/2026 20:26:16] "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+[22/May/2026 20:26:16] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[22/May/2026 20:26:16] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[22/May/2026 20:26:16] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[22/May/2026 20:26:16] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[22/May/2026 20:26:19] "GET /admin/accounts/user/ HTTP/1.1" 200 24789
+[22/May/2026 20:26:19] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+[22/May/2026 20:26:19] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[22/May/2026 20:26:19] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[22/May/2026 20:26:19] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+[22/May/2026 20:26:19] "GET /admin/jsi18n/ HTTP/1.1" 200 9860
+[22/May/2026 20:26:19] "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[22/May/2026 20:26:19] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[22/May/2026 20:26:19] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[22/May/2026 20:26:19] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[22/May/2026 20:26:19] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[22/May/2026 20:26:19] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[22/May/2026 20:26:19] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+[22/May/2026 20:26:20] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[22/May/2026 20:26:20] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[22/May/2026 20:26:20] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[22/May/2026 20:26:20] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[22/May/2026 20:26:20] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[22/May/2026 20:26:29] "GET / HTTP/1.1" 200 6400
+[22/May/2026 20:26:32] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:26:32] "GET / HTTP/1.1" 200 6322
+[22/May/2026 20:26:33] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:26:43] "POST /login/ HTTP/1.1" 200 3147
+[22/May/2026 20:26:49] "POST /login/ HTTP/1.1" 200 3147
+[22/May/2026 20:26:54] "POST /login/ HTTP/1.1" 200 3147
+[22/May/2026 20:27:00] "POST /login/ HTTP/1.1" 200 3147
+[22/May/2026 20:27:04] "POST /login/ HTTP/1.1" 200 3147
+[22/May/2026 20:27:11] "GET /admin/ HTTP/1.1" 302 0
+[22/May/2026 20:27:11] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4209
+[22/May/2026 20:27:11] "GET /static/admin/css/login.css HTTP/1.1" 200 951
+[22/May/2026 20:27:14,090] - Broken pipe from ('127.0.0.1', 56402)
+[22/May/2026 20:27:15] "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[22/May/2026 20:27:15] "GET /admin/ HTTP/1.1" 200 20311
+[22/May/2026 20:27:16] "GET /admin/accounts/user/add/ HTTP/1.1" 200 24386
+[22/May/2026 20:27:16] "GET /static/admin/css/unusable_password_field.css HTTP/1.1" 200 663
+[22/May/2026 20:27:16] "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+[22/May/2026 20:27:16] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[22/May/2026 20:27:16] "GET /admin/jsi18n/ HTTP/1.1" 200 9860
+[22/May/2026 20:27:16] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+[22/May/2026 20:27:16] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[22/May/2026 20:27:16] "GET /static/admin/js/unusable_password_field.js HTTP/1.1" 200 1480
+[22/May/2026 20:27:36] "POST /admin/accounts/user/add/ HTTP/1.1" 302 0
+[22/May/2026 20:27:36] "GET /admin/accounts/user/6/change/ HTTP/1.1" 200 42092
+[22/May/2026 20:27:37] "GET /admin/jsi18n/ HTTP/1.1" 200 9860
+[22/May/2026 20:27:37] "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+[22/May/2026 20:27:37] "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+[22/May/2026 20:27:37] "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+[22/May/2026 20:27:37] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+[22/May/2026 20:27:37] "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 280
+[22/May/2026 20:27:37] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+[22/May/2026 20:27:37] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+[22/May/2026 20:27:37] "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+[22/May/2026 20:27:48] "POST /admin/logout/ HTTP/1.1" 302 0
+[22/May/2026 20:27:48] "GET / HTTP/1.1" 200 6066
+[22/May/2026 20:27:50] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:28:04] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:28:06] "GET /signup/ HTTP/1.1" 200 3747
+[22/May/2026 20:28:17] "POST /signup/ HTTP/1.1" 200 3962
+[22/May/2026 20:28:35] "POST /signup/ HTTP/1.1" 302 0
+[22/May/2026 20:28:35] "GET /profile/ HTTP/1.1" 200 3052
+[22/May/2026 20:28:40] "GET / HTTP/1.1" 200 6420
+[22/May/2026 20:29:01] "GET /events/ HTTP/1.1" 200 38468
+[22/May/2026 20:29:02] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:29:02] "GET / HTTP/1.1" 200 6652
+[22/May/2026 20:29:03] "GET /surveys/ HTTP/1.1" 200 1562
+[22/May/2026 20:29:04] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:29:04] "GET / HTTP/1.1" 200 6652
+[22/May/2026 20:29:04] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:29:04] "GET / HTTP/1.1" 200 6652
+[22/May/2026 20:29:05] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:29:05] "GET / HTTP/1.1" 200 6652
+[22/May/2026 20:29:06] "GET /notices/ HTTP/1.1" 200 2237
+[22/May/2026 20:29:07] "GET /events/ HTTP/1.1" 200 38468
+[22/May/2026 20:29:08] "GET /polls/ HTTP/1.1" 200 2160
+[22/May/2026 20:29:09] "GET /surveys/ HTTP/1.1" 200 1562
+[22/May/2026 20:29:10] "GET /notices/ HTTP/1.1" 200 2237
+[22/May/2026 20:29:10] "GET /posts/ HTTP/1.1" 200 3769
+[22/May/2026 20:29:14] "GET /notices/ HTTP/1.1" 200 2237
+[22/May/2026 20:29:26] "GET /profile/ HTTP/1.1" 200 2581
+[22/May/2026 20:29:28] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:29:47] "GET / HTTP/1.1" 200 6405
+Not Found: /favicon.ico
+[22/May/2026 20:29:48] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:29:49] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:29:50] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:29:52] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:29:52] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:29:54] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:29:54] "GET / HTTP/1.1" 200 6307
+[22/May/2026 20:29:59] "GET / HTTP/1.1" 200 6051
+Not Found: /favicon.ico
+[22/May/2026 20:29:59] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:01] "GET / HTTP/1.1" 200 6051
+[22/May/2026 20:30:36] "GET / HTTP/1.1" 200 6048
+[22/May/2026 20:30:37] "GET / HTTP/1.1" 200 6048
+[22/May/2026 20:30:38] "GET / HTTP/1.1" 200 6048
+[22/May/2026 20:30:42] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:43] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:43] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:43] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:44] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:44] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:52] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:52] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:53] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:53] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:54] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:30:54] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:30:57] "GET / HTTP/1.1" 200 6048
+[22/May/2026 20:30:57,788] - Broken pipe from ('127.0.0.1', 56321)
+[22/May/2026 20:31:18] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[22/May/2026 20:31:18] "GET /login/?next=/admin-dashboard/ HTTP/1.1" 200 3264
+[22/May/2026 20:31:20] "GET /polls/ HTTP/1.1" 200 2093
+[22/May/2026 20:31:54] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:31:55] "POST /login/ HTTP/1.1" 302 0
+[22/May/2026 20:31:56] "GET / HTTP/1.1" 200 6859
+[22/May/2026 20:31:57] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:31:57] "GET / HTTP/1.1" 200 6304
+[22/May/2026 20:31:59] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:32:02] "POST /login/ HTTP/1.1" 302 0
+[22/May/2026 20:32:02] "GET / HTTP/1.1" 200 6829
+[22/May/2026 20:32:04] "GET /admin-dashboard/ HTTP/1.1" 200 1983
+[22/May/2026 20:32:05] "GET /surveys/ HTTP/1.1" 200 1552
+[22/May/2026 20:32:07] "GET /polls/ HTTP/1.1" 200 2267
+[22/May/2026 20:32:07] "GET /events/ HTTP/1.1" 200 38575
+[22/May/2026 20:32:08] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:32:09] "GET /notices/ HTTP/1.1" 200 2349
+[22/May/2026 20:32:12] "GET / HTTP/1.1" 200 6382
+[22/May/2026 20:32:29] "GET / HTTP/1.1" 200 6048
+Not Found: /favicon.ico
+[22/May/2026 20:32:29] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:32:35] "GET / HTTP/1.1" 200 6382
+[22/May/2026 20:32:36] "GET / HTTP/1.1" 200 6382
+[22/May/2026 20:34:15] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:34:16] "GET /notices/ HTTP/1.1" 200 2170
+[22/May/2026 20:34:16] "GET /posts/ HTTP/1.1" 200 3725
+[22/May/2026 20:34:16] "GET /events/ HTTP/1.1" 200 38401
+[22/May/2026 20:34:16,895] - Broken pipe from ('127.0.0.1', 53883)
+[22/May/2026 20:34:19] "GET /posts/3/ HTTP/1.1" 200 6696
+[22/May/2026 20:34:23] "GET / HTTP/1.1" 200 6428
+[22/May/2026 20:34:53] "GET /notices/ HTTP/1.1" 200 2170
+[22/May/2026 20:34:53] "GET /posts/ HTTP/1.1" 200 3725
+[22/May/2026 20:34:53,946] - Broken pipe from ('127.0.0.1', 58396)
+[22/May/2026 20:35:00] "GET /posts/ HTTP/1.1" 200 3725
+[22/May/2026 20:35:00,554] - Broken pipe from ('127.0.0.1', 58401)
+[22/May/2026 20:35:07] "GET /notices/ HTTP/1.1" 200 2170
+[22/May/2026 20:35:07,098] - Broken pipe from ('127.0.0.1', 58406)
+[22/May/2026 20:35:46] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:35:47] "GET / HTTP/1.1" 200 6405
+[22/May/2026 20:37:06] "GET / HTTP/1.1" 200 6071
+[22/May/2026 20:37:06,791] - Broken pipe from ('127.0.0.1', 55956)
+[22/May/2026 20:37:13] "GET / HTTP/1.1" 200 6071
+[22/May/2026 20:37:13,158] - Broken pipe from ('127.0.0.1', 55961)
+[22/May/2026 20:37:20] "GET /notices/ HTTP/1.1" 200 2170
+[22/May/2026 20:37:20] "GET /posts/ HTTP/1.1" 200 3725
+[22/May/2026 20:37:20,393] - Broken pipe from ('127.0.0.1', 55965)
+[22/May/2026 20:38:11] "GET / HTTP/1.1" 200 6748
+[22/May/2026 20:38:11,551] - Broken pipe from ('127.0.0.1', 55985)
+[22/May/2026 20:38:18] "GET / HTTP/1.1" 200 7082
+Not Found: /favicon.ico
+[22/May/2026 20:38:19] "GET /favicon.ico HTTP/1.1" 404 5419
+[22/May/2026 20:39:10] "GET /notices/ HTTP/1.1" 200 2349
+[22/May/2026 20:39:15] "GET /notices/new/ HTTP/1.1" 200 2602
+[22/May/2026 20:39:22] "POST /notices/new/ HTTP/1.1" 302 0
+[22/May/2026 20:39:22] "GET /notices/2/ HTTP/1.1" 200 2870
+[22/May/2026 20:39:25] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:39:27] "GET /posts/ HTTP/1.1" 200 3759
+[22/May/2026 20:39:29] "GET /posts/new/ HTTP/1.1" 200 2532
+[22/May/2026 20:39:37] "POST /posts/new/ HTTP/1.1" 302 0
+[22/May/2026 20:39:37] "GET /posts/4/ HTTP/1.1" 200 3886
+[22/May/2026 20:39:39] "POST /posts/4/like/ HTTP/1.1" 200 517
+[22/May/2026 20:39:43] "POST /posts/4/comments/ HTTP/1.1" 200 2283
+[22/May/2026 20:39:47] "POST /posts/4/comments/ HTTP/1.1" 200 3848
+[22/May/2026 20:39:53] "GET /events/ HTTP/1.1" 200 38575
+[22/May/2026 20:39:56] "GET /events/?year=2026&month=5&day=2026-05-21 HTTP/1.1" 200 38674
+[22/May/2026 20:39:58] "GET /events/new/?start_date=2026-05-21 HTTP/1.1" 200 2988
+[22/May/2026 20:40:06] "POST /events/new/?start_date=2026-05-21 HTTP/1.1" 302 0
+[22/May/2026 20:40:06] "GET /events/3/ HTTP/1.1" 200 2715
+[22/May/2026 20:40:08] "GET /events/ HTTP/1.1" 200 38908
+[22/May/2026 20:40:11] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 20:40:11] "GET / HTTP/1.1" 200 7004
+[22/May/2026 20:40:12] "GET /login/ HTTP/1.1" 200 3011
+[22/May/2026 20:40:16] "POST /login/ HTTP/1.1" 302 0
+[22/May/2026 20:40:16] "GET / HTTP/1.1" 200 7559
+[22/May/2026 20:40:18] "GET /events/ HTTP/1.1" 200 38801
+Forbidden (Permission denied): /events/new/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\events\views.py", line 184, in event_create
+    raise PermissionDenied("Admin permission is required to create events.")
+django.core.exceptions.PermissionDenied: Admin permission is required to create events.
+[22/May/2026 20:40:20] "GET /events/new/?start_date=2026-05-21 HTTP/1.1" 403 135
+Forbidden (Permission denied): /events/new/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\events\views.py", line 184, in event_create
+    raise PermissionDenied("Admin permission is required to create events.")
+django.core.exceptions.PermissionDenied: Admin permission is required to create events.
+[22/May/2026 20:40:24] "GET /events/new/?start_date=2026-05-21 HTTP/1.1" 403 135
+[22/May/2026 20:40:26] "GET /events/3/ HTTP/1.1" 200 2288
+[22/May/2026 20:40:28] "GET /events/ HTTP/1.1" 200 38801
+[22/May/2026 20:40:32] "GET /notices/ HTTP/1.1" 200 2790
+[22/May/2026 20:40:34] "GET /posts/ HTTP/1.1" 200 4288
+[22/May/2026 20:40:36] "GET /posts/new/ HTTP/1.1" 200 2542
+[22/May/2026 20:40:37] "GET /posts/ HTTP/1.1" 200 4288
+[22/May/2026 20:40:38] "GET /posts/4/ HTTP/1.1" 200 4950
+[22/May/2026 20:40:41] "POST /posts/4/comments/ HTTP/1.1" 200 4187
+C:\Project\vibe_community\polls\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 124, in populate
+    app_config.ready()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\polls\admin.py", line 5, in <module>
+    from .models import Poll, PollOption, PollVote
+ImportError: cannot import name 'PollVote' from 'polls.models' (C:\Project\vibe_community\polls\models.py)
+C:\Project\vibe_community\polls\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 124, in populate
+    app_config.ready()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\surveys\admin.py", line 5, in <module>
+    from .models import Survey, SurveyQuestion, SurveyChoice, SurveyResponse
+ImportError: cannot import name 'SurveyQuestion' from 'surveys.models' (C:\Project\vibe_community\surveys\models.py)
+C:\Project\vibe_community\surveys\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 124, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 86, in raise_last_exception
+    raise _exception[1]
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\apps\registry.py", line 124, in populate
+    app_config.ready()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\contrib\admin\__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\surveys\admin.py", line 5, in <module>
+    from .models import Survey, SurveyQuestion, SurveyChoice, SurveyResponse
+ImportError: cannot import name 'SurveyQuestion' from 'surveys.models' (C:\Project\vibe_community\surveys\models.py)
+C:\Project\vibe_community\surveys\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\migrations\0002_rework_survey_model.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\robe1\anaconda3\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\management\base.py", line 492, in check
+    all_issues = checks.run_checks(
+                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\config\urls.py", line 16, in <module>
+    path("surveys/", include("surveys.urls")),
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\robe1\anaconda3\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Project\vibe_community\surveys\urls.py", line 3, in <module>
+    from . import views
+  File "C:\Project\vibe_community\surveys\views.py", line 276
+    survey = survey_form.save(commit=False)
+    ^
+IndentationError: expected an indented block after 'else' statement on line 275
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\surveys\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Project\vibe_community\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+[INFO] 2026-05-22 21:17:22,536 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+C:\Project\vibe_community\events\views.py changed, reloading.
+Watching for file changes with StatReloader
+[INFO] 2026-05-22 21:25:37,093 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[INFO] 2026-05-22 21:26:00,183 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:00] "GET / HTTP/1.1" 200 14081
+[INFO] 2026-05-22 21:26:03,728 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:03] "GET /profile/ HTTP/1.1" 200 10541
+[INFO] 2026-05-22 21:26:05,165 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:05] "GET / HTTP/1.1" 200 14081
+[INFO] 2026-05-22 21:26:08,715 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:08] "GET /notices/ HTTP/1.1" 200 10884
+[INFO] 2026-05-22 21:26:09,303 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:09] "GET /posts/ HTTP/1.1" 200 12432
+[INFO] 2026-05-22 21:26:09,748 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:26:09] "GET /events/ HTTP/1.1" 200 46957
+[INFO] 2026-05-22 21:26:10,363 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:26:10] "GET /polls/ HTTP/1.1" 500 250872
+[INFO] 2026-05-22 21:27:23,563 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:27:23] "GET /events/new/?start_date=2026-05-24 HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:27:23,584 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:27:23] "GET /events/ HTTP/1.1" 200 47085
+[INFO] 2026-05-22 21:27:27,171 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:27:27] "GET /polls/ HTTP/1.1" 500 250872
+[INFO] 2026-05-22 21:27:29,688 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:27:29] "GET /surveys/ HTTP/1.1" 200 10124
+[INFO] 2026-05-22 21:27:33,261 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:27:33] "GET /polls/ HTTP/1.1" 500 250872
+[INFO] 2026-05-22 21:27:47,981 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:27:48] "GET /events/ HTTP/1.1" 200 46957
+Not Found: /favicon.ico
+[22/May/2026 21:27:48] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:27:49,243 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:27:49] "GET /surveys/ HTTP/1.1" 200 10124
+[INFO] 2026-05-22 21:27:52,291 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:27:52] "GET /polls/ HTTP/1.1" 500 250873
+[INFO] 2026-05-22 21:27:53,809 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:27:53] "GET /polls/ HTTP/1.1" 500 251138
+Not Found: /favicon.ico
+[22/May/2026 21:27:54] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:27:57,673 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '(user.is_staff'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(user.is_staff' from '(user.is_staff'
+[22/May/2026 21:27:57] "GET /polls/ HTTP/1.1" 500 250873
+[INFO] 2026-05-22 21:29:57,879 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 38: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[22/May/2026 21:29:57] "GET /polls/ HTTP/1.1" 500 220518
+Not Found: /favicon.ico
+[22/May/2026 21:29:58] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:30:00,327 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:30:00] "GET /surveys/ HTTP/1.1" 200 9935
+Not Found: /favicon.ico
+[22/May/2026 21:30:00] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:30:03,018 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 38: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[22/May/2026 21:30:03] "GET /polls/ HTTP/1.1" 500 220252
+[INFO] 2026-05-22 21:30:34,705 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:30:34] "GET /surveys/ HTTP/1.1" 200 9935
+Not Found: /favicon.ico
+[22/May/2026 21:30:35] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:30:35,900 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:30:35] "GET /surveys/ HTTP/1.1" 200 9935
+Not Found: /favicon.ico
+[22/May/2026 21:30:36] "GET /favicon.ico HTTP/1.1" 404 5419
+[INFO] 2026-05-22 21:30:39,145 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+Internal Server Error: /polls/
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: polls_vote
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\polls\views.py", line 73, in poll_list
+    return render(
+           ^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\template\defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Project\vibe_community\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: polls_vote
+[22/May/2026 21:30:39] "GET /polls/ HTTP/1.1" 500 226305
+[INFO] 2026-05-22 21:32:29,787 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:29] "GET /polls/ HTTP/1.1" 200 11146
+[INFO] 2026-05-22 21:32:34,917 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:34] "GET /surveys/ HTTP/1.1" 200 9935
+[INFO] 2026-05-22 21:32:39,206 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:39] "GET / HTTP/1.1" 200 13892
+[INFO] 2026-05-22 21:32:43,319 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:43] "GET /polls/ HTTP/1.1" 200 11146
+[INFO] 2026-05-22 21:32:45,036 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:45] "GET /surveys/ HTTP/1.1" 200 9935
+[INFO] 2026-05-22 21:32:47,900 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:47] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:32:47,934 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:47] "GET / HTTP/1.1" 200 14003
+[INFO] 2026-05-22 21:32:49,669 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:49] "GET /notices/ HTTP/1.1" 200 10695
+[INFO] 2026-05-22 21:32:51,063 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:51] "GET /notices/ HTTP/1.1" 200 10695
+[INFO] 2026-05-22 21:32:52,489 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:52] "GET /posts/ HTTP/1.1" 200 12243
+[INFO] 2026-05-22 21:32:53,917 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:53] "GET /events/ HTTP/1.1" 200 46768
+[INFO] 2026-05-22 21:32:55,795 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:32:55] "GET /surveys/ HTTP/1.1" 200 9935
+[INFO] 2026-05-22 21:33:37,084 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:33:37] "GET /profile/ HTTP/1.1" 200 10352
+[INFO] 2026-05-22 21:33:41,295 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:33:41] "GET / HTTP/1.1" 200 13000
+[INFO] 2026-05-22 21:34:35,728 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:35] "GET /surveys/ HTTP/1.1" 200 9043
+[INFO] 2026-05-22 21:34:39,008 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:39] "GET / HTTP/1.1" 200 13000
+[INFO] 2026-05-22 21:34:41,451 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:41] "GET /admin-dashboard/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:34:41,471 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:41] "GET / HTTP/1.1" 200 13111
+[INFO] 2026-05-22 21:34:42,851 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:42] "GET /notices/ HTTP/1.1" 200 9803
+[INFO] 2026-05-22 21:34:45,465 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:45] "GET /notices/1/ HTTP/1.1" 200 9170
+[INFO] 2026-05-22 21:34:46,623 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:46] "GET /notices/ HTTP/1.1" 200 9803
+[INFO] 2026-05-22 21:34:47,404 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:47] "GET /notices/2/ HTTP/1.1" 200 9134
+[INFO] 2026-05-22 21:34:48,155 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:48] "GET /notices/ HTTP/1.1" 200 9803
+[INFO] 2026-05-22 21:34:48,588 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:48] "GET /posts/ HTTP/1.1" 200 11351
+[INFO] 2026-05-22 21:34:49,618 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:49] "GET /posts/4/ HTTP/1.1" 200 13562
+[INFO] 2026-05-22 21:34:50,475 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:50] "GET /posts/ HTTP/1.1" 200 11351
+[INFO] 2026-05-22 21:34:51,351 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:51] "GET /posts/3/ HTTP/1.1" 200 11959
+[INFO] 2026-05-22 21:34:52,181 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:52] "GET /posts/ HTTP/1.1" 200 11351
+[INFO] 2026-05-22 21:34:54,769 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:54] "GET /events/ HTTP/1.1" 200 45876
+[INFO] 2026-05-22 21:34:56,933 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:56] "GET /events/new/?start_date=2026-05-21 HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:34:56,961 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:56] "GET /events/ HTTP/1.1" 200 46004
+[INFO] 2026-05-22 21:34:58,386 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:34:58] "GET /surveys/ HTTP/1.1" 200 9043
+[INFO] 2026-05-22 21:35:01,288 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:01] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 21:35:01] "GET / HTTP/1.1" 200 12726
+[INFO] 2026-05-22 21:35:02,975 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:02] "GET /login/ HTTP/1.1" 200 9945
+[INFO] 2026-05-22 21:35:05,610 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:06] "POST /login/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:35:06,437 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:06] "GET / HTTP/1.1" 200 13191
+[INFO] 2026-05-22 21:35:08,320 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:08] "GET /notices/ HTTP/1.1" 200 9884
+[INFO] 2026-05-22 21:35:10,546 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:10] "GET /posts/ HTTP/1.1" 200 11341
+[INFO] 2026-05-22 21:35:12,348 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:12] "GET /posts/4/ HTTP/1.1" 200 15260
+[INFO] 2026-05-22 21:35:17,642 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:17] "GET /posts/ HTTP/1.1" 200 11341
+[INFO] 2026-05-22 21:35:18,343 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:18] "GET /events/ HTTP/1.1" 200 45952
+[INFO] 2026-05-22 21:35:18,838 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:18] "GET /events/ HTTP/1.1" 200 45952
+[INFO] 2026-05-22 21:35:20,636 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:20] "GET /events/new/?start_date=2026-05-20 HTTP/1.1" 200 9986
+[INFO] 2026-05-22 21:35:22,181 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:22] "GET /polls/ HTTP/1.1" 200 10805
+[INFO] 2026-05-22 21:35:24,176 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:24] "GET /surveys/ HTTP/1.1" 200 9120
+[INFO] 2026-05-22 21:35:25,559 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:25] "GET /polls/ HTTP/1.1" 200 10805
+[INFO] 2026-05-22 21:35:27,502 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:27] "GET /polls/1/results/ HTTP/1.1" 200 9796
+[INFO] 2026-05-22 21:35:29,681 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:29] "GET /polls/ HTTP/1.1" 200 10805
+[INFO] 2026-05-22 21:35:30,629 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:30] "GET /surveys/ HTTP/1.1" 200 9120
+[INFO] 2026-05-22 21:35:32,219 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:35:32] "GET /surveys/new/ HTTP/1.1" 200 19338
+[INFO] 2026-05-22 21:36:01,285 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:01] "POST /surveys/new/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:36:01,333 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:01] "GET /surveys/ HTTP/1.1" 200 10040
+[INFO] 2026-05-22 21:36:03,812 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:03] "GET /surveys/1/respond/ HTTP/1.1" 200 12357
+[INFO] 2026-05-22 21:36:07,845 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:07] "POST /surveys/1/respond/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:36:07,889 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:07] "GET /surveys/ HTTP/1.1" 200 10055
+[INFO] 2026-05-22 21:36:09,403 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:09] "GET /surveys/1/results/ HTTP/1.1" 200 10020
+[INFO] 2026-05-22 21:36:16,163 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:16] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 21:36:16] "GET / HTTP/1.1" 200 12726
+[22/May/2026 21:36:17] "GET /login/ HTTP/1.1" 200 9945
+[INFO] 2026-05-22 21:36:19,998 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:20] "POST /login/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:36:21,026 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:21] "GET / HTTP/1.1" 200 13221
+[INFO] 2026-05-22 21:36:22,477 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:22] "GET /surveys/ HTTP/1.1" 200 9759
+[INFO] 2026-05-22 21:36:23,416 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:23] "GET /surveys/1/respond/ HTTP/1.1" 200 12367
+[INFO] 2026-05-22 21:36:27,065 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:27] "POST /surveys/1/respond/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:36:27,112 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:27] "GET /surveys/ HTTP/1.1" 200 9873
+[INFO] 2026-05-22 21:36:30,763 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:30] "GET /surveys/ HTTP/1.1" 200 9759
+[INFO] 2026-05-22 21:36:33,120 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:33] "GET /logout/ HTTP/1.1" 302 0
+[22/May/2026 21:36:33] "GET / HTTP/1.1" 200 12726
+[22/May/2026 21:36:34] "GET /login/ HTTP/1.1" 200 9945
+[INFO] 2026-05-22 21:36:36,610 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:37] "POST /login/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:36:37,733 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:37] "GET / HTTP/1.1" 200 13191
+[INFO] 2026-05-22 21:36:38,368 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:38] "GET /admin-dashboard/ HTTP/1.1" 200 9091
+[INFO] 2026-05-22 21:36:39,084 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:39] "GET /surveys/ HTTP/1.1" 200 9941
+[INFO] 2026-05-22 21:36:41,232 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:36:41] "GET /surveys/1/results/ HTTP/1.1" 200 10352
+[INFO] 2026-05-22 21:37:10,017 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:10] "GET /surveys/ HTTP/1.1" 200 9941
+[INFO] 2026-05-22 21:37:10,998 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:11] "GET /admin-dashboard/ HTTP/1.1" 200 9091
+[INFO] 2026-05-22 21:37:11,919 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:11] "GET /events/ HTTP/1.1" 200 45952
+[INFO] 2026-05-22 21:37:12,378 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:12] "GET /posts/ HTTP/1.1" 200 11341
+[INFO] 2026-05-22 21:37:13,046 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:13] "GET /notices/ HTTP/1.1" 200 9884
+[INFO] 2026-05-22 21:37:14,042 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:14] "GET /admin-dashboard/ HTTP/1.1" 200 9091
+[INFO] 2026-05-22 21:37:14,492 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:14] "GET /surveys/ HTTP/1.1" 200 9941
+[INFO] 2026-05-22 21:37:15,664 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:15] "GET /surveys/1/respond/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:37:15,698 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:15] "GET /surveys/ HTTP/1.1" 200 10056
+[INFO] 2026-05-22 21:37:17,250 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:17] "GET /surveys/1/respond/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:37:17,284 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:17] "GET /surveys/ HTTP/1.1" 200 10056
+[INFO] 2026-05-22 21:37:19,819 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:19] "GET /profile/ HTTP/1.1" 200 9430
+[INFO] 2026-05-22 21:37:21,319 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:37:21] "GET /profile/edit/ HTTP/1.1" 200 9814
+[INFO] 2026-05-22 21:38:20,009 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:20] "POST /profile/edit/ HTTP/1.1" 302 0
+[INFO] 2026-05-22 21:38:20,057 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:20] "GET /profile/ HTTP/1.1" 200 9609
+[INFO] 2026-05-22 21:38:26,569 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:26] "GET / HTTP/1.1" 200 12980
+[INFO] 2026-05-22 21:38:28,055 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:28] "GET /notices/ HTTP/1.1" 200 9892
+[INFO] 2026-05-22 21:38:45,349 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:45] "GET /events/ HTTP/1.1" 200 45952
+[INFO] 2026-05-22 21:38:46,739 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:46] "GET /polls/ HTTP/1.1" 200 10813
+[INFO] 2026-05-22 21:38:50,313 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:50] "GET /polls/2/ HTTP/1.1" 200 10136
+[INFO] 2026-05-22 21:38:52,733 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:52] "GET /surveys/ HTTP/1.1" 200 9941
+[INFO] 2026-05-22 21:38:53,937 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:53] "GET /polls/ HTTP/1.1" 200 10813
+[INFO] 2026-05-22 21:38:54,723 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:54] "GET /admin-dashboard/ HTTP/1.1" 200 9091
+[INFO] 2026-05-22 21:38:55,521 vibe.sqlite SQLite pragmas configured for database=default: {'journal_mode': 'wal', 'busy_timeout_ms': 20000, 'foreign_keys': 1, 'synchronous': 1}
+[22/May/2026 21:38:55] "GET / HTTP/1.1" 200 12980

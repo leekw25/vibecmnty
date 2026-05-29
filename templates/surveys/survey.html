@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-5">
+  <section class="vibe-card fade-up">
+    {% if is_create %}
+      <h2 class="text-2xl font-bold text-slate-900">설문 생성</h2>
+    {% else %}
+      <h2 class="text-2xl font-bold text-slate-900">설문 참여</h2>
+      <p class="text-sm text-slate-600">{{ questions|length }}개 질문</p>
+    {% endif %}
+  </section>
+
+  <form method="post" id="survey-form" class="space-y-6">
+    {% csrf_token %}
+
+    {% if is_create %}
+      <div class="vibe-card space-y-3">
+        <div>
+          <label class="mb-1 block text-sm font-semibold text-slate-700">{{ survey_form.title.label }}</label>
+          {{ survey_form.title }}
+          {% if survey_form.title.errors %}<p class="mt-1 text-sm text-rose-600">{{ survey_form.title.errors|striptags }}</p>{% endif %}
+        </div>
+        <div>
+          <label class="mb-1 block text-sm font-semibold text-slate-700">설명</label>
+          {{ survey_form.description }}
+          {% if survey_form.description.errors %}<p class="mt-1 text-sm text-rose-600">{{ survey_form.description.errors|striptags }}</p>{% endif %}
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label class="mb-1 block text-sm font-semibold text-slate-700">마감일</label>
+            {{ survey_form.expires_at }}
+            {% if survey_form.expires_at.errors %}<p class="mt-1 text-sm text-rose-600">{{ survey_form.expires_at.errors|striptags }}</p>{% endif %}
+          </div>
+          <label class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+            {{ survey_form.is_anonymous }} 익명 응답
+          </label>
+        </div>
+      </div>
+
+      <div class="vibe-card space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-slate-900">질문</h3>
+          <button type="button" id="add-question" class="vibe-btn vibe-btn-primary">질문 추가</button>
+        </div>
+
+        {{ question_formset.management_form }}
+        <div id="question-list" class="space-y-3">
+          {% for form in question_formset %}
+            <div class="question-item rounded-xl border border-slate-200 bg-white/75 p-4">
+              <div class="mb-2 flex items-center justify-between">
+                <span class="font-semibold text-sm text-slate-700">Question {{ forloop.counter }}</span>
+                <button type="button" class="delete-question text-sm text-rose-600 hover:underline">삭제</button>
+              </div>
+
+              <label class="mb-1 block text-sm font-medium text-slate-700">질문</label>
+              {{ form.text }}
+
+              <label class="mt-2 block text-sm font-medium text-slate-700">타입</label>
+              {{ form.question_type }}
+
+              <label class="mt-2 flex items-center gap-2 text-sm text-slate-700">
+                {{ form.required }} 필수
+              </label>
+
+              <label class="mt-2 block text-sm font-medium text-slate-700 options-wrapper">선택지 (줄바꿈 단위)</label>
+              {{ form.options_text }}
+              <div class="hidden">{{ form.DELETE }}</div>
+
+              <input type="hidden" class="question-order" value="{{ forloop.counter0 }}">
+              {% if form.errors %}<p class="mt-2 text-sm text-rose-600">{{ form.errors|striptags }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <template id="question-template">
+          <div class="question-item rounded-xl border border-slate-200 bg-white/75 p-4">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-semibold text-sm text-slate-700">Question __index__</span>
+              <button type="button" class="delete-question text-sm text-rose-600 hover:underline">삭제</button>
+            </div>
+            <label class="mb-1 block text-sm font-medium text-slate-700">질문</label>
+            <input class="w-full rounded-xl border border-slate-200 px-3 py-2" type="text" name="question-__prefix__-text" required>
+            <label class="mt-2 block text-sm font-medium text-slate-700">타입</label>
+            <select class="w-full rounded-xl border border-slate-200 px-3 py-2 question-type-select" name="question-__prefix__-question_type">
+              {% for v, label in question_types.choices %}
+                <option value="{{ v }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+            <label class="mt-2 flex items-center gap-2 text-sm text-slate-700">
+              <input type="checkbox" name="question-__prefix__-required" checked>
+              필수
+            </label>
+            <label class="mt-2 block text-sm font-medium text-slate-700 options-wrapper">선택지 (줄바꿈 단위)</label>
+            <textarea class="w-full rounded-xl border border-slate-200 px-3 py-2 h-24" rows="3" name="question-__prefix__-options_text" placeholder="선택지(한 줄에 하나씩)"></textarea>
+            <div class="hidden"><input type="checkbox" name="question-__prefix__-DELETE" value="on"></div>
+          </div>
+        </template>
+      </div>
+    {% else %}
+      <div class="vibe-card space-y-4">
+        <input type="hidden" id="total-questions" value="{{ questions|length }}">
+        <div class="rounded-lg bg-white/90 p-3">
+          <p class="text-sm text-slate-700">{{ survey.title }}</p>
+          <p class="mt-1 text-xs text-slate-500">{{ survey.description|default:"설명 없음" }}</p>
+        </div>
+
+        <div id="question-progress" class="h-2 w-full rounded bg-slate-200">
+          <div id="question-progress-bar" class="h-2 rounded bg-indigo-600 transition-all" style="width: 0%;"></div>
+        </div>
+        <p id="progress-label" class="text-sm text-slate-600">1 / {{ questions|length }}</p>
+
+        <div id="question-cards" class="space-y-4">
+          {% for question in questions %}
+            <div class="question-card rounded-xl border border-slate-200 bg-white/85 p-4" data-index="{{ forloop.counter0 }}">
+              <h3 class="text-lg font-semibold text-slate-900">{{ forloop.counter }}. {{ question.text }}</h3>
+              <p class="mb-2 text-sm text-slate-500">타입: {{ question.get_question_type_display }} / {% if question.required %}필수{% else %}선택{% endif %}</p>
+
+              {% if question.question_type == question_types.TEXT %}
+                <input class="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2" type="text" name="answer_{{ question.id }}">
+              {% elif question.question_type == question_types.TEXTAREA %}
+                <textarea class="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2" name="answer_{{ question.id }}" rows="4"></textarea>
+              {% elif question.question_type == question_types.CHOICE %}
+                {% for option in question.options %}
+                  <label class="mt-2 flex items-center gap-2">
+                    <input type="radio" name="answer_{{ question.id }}" value="{{ option }}">
+                    {{ option }}
+                  </label>
+                {% empty %}
+                  <p class="mt-2 text-sm text-slate-500">아직 선택지가 없습니다.</p>
+                {% endfor %}
+              {% elif question.question_type == question_types.MULTIPLE %}
+                {% for option in question.options %}
+                  <label class="mt-2 flex items-center gap-2">
+                    <input type="checkbox" name="answer_{{ question.id }}" value="{{ option }}">
+                    {{ option }}
+                  </label>
+                {% empty %}
+                  <p class="mt-2 text-sm text-slate-500">아직 선택지가 없습니다.</p>
+                {% endfor %}
+              {% else %}
+                <div class="mt-2 flex gap-4">
+                  {% for num in "12345"|make_list %}
+                    <label class="flex items-center gap-2">
+                      <input type="radio" name="answer_{{ question.id }}" value="{{ num }}">
+                      {{ num }}
+                    </label>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="flex gap-2">
+          <button type="button" id="prev-question" class="vibe-btn vibe-btn-ghost">이전</button>
+          <button type="button" id="next-question" class="vibe-btn vibe-btn-primary">다음</button>
+          <button type="submit" id="submit-survey" class="ml-auto vibe-btn vibe-btn-success hidden">제출</button>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="pt-2">
+      <a href="{% url 'surveys:list' %}" class="vibe-btn vibe-btn-ghost">목록</a>
+      {% if is_create %}
+        <button type="submit" class="ml-2 vibe-btn vibe-btn-primary">저장</button>
+      {% endif %}
+    </div>
+  </form>
+
+  {% if is_create %}
+    <script>
+      (function() {
+        const questionList = document.getElementById("question-list");
+        const addBtn = document.getElementById("add-question");
+        const template = document.getElementById("question-template").innerHTML;
+        const totalInput = document.getElementById("id_question-TOTAL_FORMS");
+        const itemSelector = ".question-item";
+
+        const getNextIndex = () => Number(totalInput.value || 0);
+
+        const refreshQuestionOrder = () => {
+          document.querySelectorAll(itemSelector).forEach((item, idx) => {
+            const title = item.querySelector("span");
+            if (title) title.textContent = `Question ${idx + 1}`;
+          });
+        };
+
+        const syncOptions = (item) => {
+          const typeInput = item.querySelector(".question-type-select");
+          const optionsLabel = item.querySelector(".options-wrapper");
+          const optionsInput = item.querySelector("textarea[name$='options_text']");
+          if (!typeInput || !optionsInput || !optionsLabel) return;
+
+          const isChoice = typeInput.value === "CHOICE" || typeInput.value === "MULTIPLE";
+          optionsLabel.style.display = isChoice ? "block" : "none";
+          optionsInput.style.display = isChoice ? "block" : "none";
+          if (!isChoice) {
+            optionsInput.value = "";
+          }
+        };
+
+        const bindItem = (item) => {
+          const typeInput = item.querySelector(".question-type-select");
+          if (typeInput) {
+            typeInput.addEventListener("change", () => syncOptions(item));
+          }
+
+          const deleteBtn = item.querySelector(".delete-question");
+          if (deleteBtn) {
+            deleteBtn.addEventListener("click", () => {
+              const del = item.querySelector("input[name$='-DELETE']");
+              if (del) {
+                del.checked = true;
+                item.style.display = "none";
+              }
+              refreshQuestionOrder();
+            });
+          }
+        };
+
+        const init = () => {
+          document.querySelectorAll(itemSelector).forEach((item) => {
+            syncOptions(item);
+            bindItem(item);
+          });
+          refreshQuestionOrder();
+        };
+
+        if (addBtn) {
+          addBtn.addEventListener("click", () => {
+            const nextIndex = getNextIndex();
+            totalInput.value = nextIndex + 1;
+            const html = template
+              .replaceAll("__prefix__", String(nextIndex))
+              .replaceAll("__index__", String(nextIndex + 1));
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = html.trim();
+            questionList.appendChild(wrapper.firstElementChild);
+            init();
+          });
+        }
+
+        init();
+      })();
+    </script>
+  {% else %}
+    <script>
+      (function() {
+        const cards = Array.from(document.querySelectorAll(".question-card"));
+        const total = cards.length;
+        const prevBtn = document.getElementById("prev-question");
+        const nextBtn = document.getElementById("next-question");
+        const submitBtn = document.getElementById("submit-survey");
+        const bar = document.getElementById("question-progress-bar");
+        const label = document.getElementById("progress-label");
+        let current = 0;
+
+        const show = (index) => {
+          cards.forEach((card, i) => {
+            card.classList.toggle("hidden", i !== index);
+          });
+          const percent = total > 0 ? Math.round(((index + 1) / total) * 100) : 0;
+          bar.style.width = `${Math.min(100, percent)}%`;
+          label.textContent = `${index + 1} / ${total}`;
+          prevBtn.classList.toggle("hidden", index === 0);
+          nextBtn.classList.toggle("hidden", index >= total - 1);
+          submitBtn.classList.toggle("hidden", index !== total - 1);
+        };
+
+        nextBtn.addEventListener("click", () => {
+          if (current < total - 1) {
+            current += 1;
+            show(current);
+          }
+        });
+
+        prevBtn.addEventListener("click", () => {
+          if (current > 0) {
+            current -= 1;
+            show(current);
+          }
+        });
+
+        show(0);
+      })();
+    </script>
+  {% endif %}
+</section>
+{% endblock %}

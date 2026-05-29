@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid gap-4 lg:grid-cols-[16rem_1fr]">
+  <aside class="h-fit vibe-card">
+    <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-700">Admin Console</h2>
+    <p class="mt-1 text-xs text-slate-500">관리 기능 바로가기</p>
+    <nav class="mt-4 space-y-2">
+      <a href="{% url 'admin_dashboard:home' %}" class="menu-link {% if section == 'dashboard' %}bg-indigo-100 text-indigo-700{% endif %}">메인 대시보드</a>
+      <a href="{% url 'admin_dashboard:notices' %}" class="menu-link {% if section == 'notices' %}bg-indigo-100 text-indigo-700{% endif %}">공지사항 관리</a>
+      <a href="{% url 'admin_dashboard:posts' %}" class="menu-link {% if section == 'posts' %}bg-indigo-100 text-indigo-700{% endif %}">게시글 관리</a>
+      <a href="{% url 'admin_dashboard:events' %}" class="menu-link {% if section == 'events' %}bg-indigo-100 text-indigo-700{% endif %}">일정 관리</a>
+      <a href="{% url 'admin_dashboard:polls' %}" class="menu-link {% if section == 'polls' %}bg-indigo-100 text-indigo-700{% endif %}">투표 관리</a>
+      <a href="{% url 'admin_dashboard:surveys' %}" class="menu-link {% if section == 'surveys' %}bg-indigo-100 text-indigo-700{% endif %}">설문조사 관리</a>
+      <a href="{% url 'admin_dashboard:users' %}" class="menu-link {% if section == 'users' %}bg-indigo-100 text-indigo-700{% endif %}">사용자 관리</a>
+      <a href="{% url 'admin_dashboard:system' %}" class="menu-link {% if section == 'system' %}bg-indigo-100 text-indigo-700{% endif %}">시스템 관리</a>
+      <a href="/admin/" class="menu-link">기본 Django Admin</a>
+    </nav>
+  </aside>
+
+  <section class="space-y-4">
+    <header class="vibe-hero">
+      <p class="text-sm text-indigo-700 font-semibold">{{ section_title|default:"관리자 대시보드" }}</p>
+      <h1 class="mt-2 text-2xl font-black">{{ section_title|default:"운영자 대시보드" }}</h1>
+      {% if section_description %}
+        <p class="mt-2 text-sm text-slate-700">{{ section_description }}</p>
+      {% endif %}
+    </header>
+
+    {% block admin_content %}{% endblock %}
+  </section>
+</div>
+{% endblock %}

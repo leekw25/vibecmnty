@@ -1,0 +1,40 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% block admin_content %}
+<div class="flex flex-wrap gap-2">
+  <a href="{% url 'events:create' %}" class="vibe-btn vibe-btn-primary">일정 생성</a>
+  <a href="{% url 'events:calendar' %}" class="vibe-btn vibe-btn-ghost">일정 캘린더</a>
+</div>
+
+<form method="get" action="{% url 'admin_dashboard:events' %}" class="vibe-card flex gap-2 flex-wrap">
+  <input type="text" name="q" value="{{ q }}" class="vibe-input flex-1 min-w-[180px]" placeholder="일정 검색 (제목/내용/장소)">
+  <button type="submit" class="vibe-btn vibe-btn-primary">검색</button>
+</form>
+
+<article class="vibe-card">
+  <p class="text-sm text-slate-600">총 {{ event_count }}건</p>
+  <div class="mt-3 space-y-2">
+    {% for event in events %}
+      <div class="rounded-lg border border-slate-200 bg-white/70 p-3">
+        <div class="flex items-start justify-between gap-3 flex-wrap">
+          <div>
+            <p class="font-semibold">{{ event.title }}</p>
+            <p class="text-xs text-slate-500">시작: {{ event.start_date }}{% if event.end_date %} ~ {{ event.end_date }}{% endif %} · 작성자: {{ event.created_by|default:"-" }}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a href="{% url 'events:detail' event.id %}" class="vibe-btn vibe-btn-ghost py-1">조회</a>
+            <a href="{% url 'events:update' event.id %}" class="vibe-btn vibe-btn-primary py-1">수정</a>
+            <form method="post" action="{% url 'events:delete' event.id %}" class="inline-block">
+              {% csrf_token %}
+              <button type="submit" class="vibe-btn vibe-btn-danger py-1">삭제</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-sm text-slate-500">등록된 일정이 없습니다.</p>
+    {% endfor %}
+  </div>
+</article>
+{% endblock %}
+

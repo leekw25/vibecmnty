@@ -1,0 +1,17 @@
+<form
+  hx-post="{% url 'posts:like' post.id %}"
+  hx-target="#like-panel"
+  hx-swap="outerHTML"
+  class="inline-flex items-center gap-2"
+>
+  {% csrf_token %}
+  <button
+    type="submit"
+    class="vibe-btn
+    {% if user_liked %}vibe-btn-danger{% else %}vibe-btn-ghost{% endif %}
+    inline-flex items-center gap-2"
+  >
+    <span class="text-lg">{% if user_liked %}❤️{% else %}♡{% endif %}</span>
+    <span>좋아요 {{ likes_count }}</span>
+  </button>
+</form>

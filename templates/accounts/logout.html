@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vibe-card max-w-xl fade-up">
+  <h1 class="text-xl font-semibold mb-4">로그아웃</h1>
+  <p class="text-sm text-slate-700">정말 로그아웃하시겠습니까?</p>
+  <form method="post" class="mt-4 flex gap-2">
+    {% csrf_token %}
+    <button type="submit" class="vibe-btn vibe-btn-danger">로그아웃</button>
+    <a href="/" class="vibe-btn vibe-btn-ghost">취소</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,7 @@
+Django==5.2.4
+django-allauth>=65,<66
+django-tailwind>=3.8.0,<4
+django-htmx>=1.20.0,<2
+django-crispy-forms>=2.3,<3
+Pillow>=11.1.0,<12
+django-mptt>=0.16.0,<1

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Community</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-soft: #f7f8ff;
+      --txt-main: #0f172a;
+      --txt-soft: #475569;
+      --line: rgba(148, 163, 184, 0.45);
+      --accent: #4f46e5;
+      --accent-2: #fb7185;
+      --card: rgba(255, 255, 255, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--txt-main);
+      font-family: "Manrope", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(900px 500px at 10% -10%, #dbeafe 0%, transparent 55%),
+        radial-gradient(800px 400px at 85% 0%, #fce7f3 0%, transparent 50%),
+        linear-gradient(160deg, #f8fafc 0%, #f3f4ff 45%, #fff5f0 100%);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .vibe-wrap {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .vibe-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .vibe-shell {
+      padding-top: 1.1rem;
+      padding-bottom: 1.25rem;
+    }
+
+    .vibe-nav {
+      margin-top: 0.65rem;
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.5rem;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      animation: fadeIn .2s ease both;
+    }
+
+    .vibe-nav-horizontal {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .menu-link {
+      border-radius: 0.7rem;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.95rem;
+      color: var(--txt-main);
+      transition: all .2s ease;
+    }
+
+    .menu-link:hover {
+      background: rgba(79, 70, 229, 0.10);
+      color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    .vibe-nav-desk {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .vibe-msg {
+      position: sticky;
+      top: 70px;
+      z-index: 20;
+      margin-top: 0.75rem;
+      border-radius: 0.9rem;
+      border: 1px solid;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .vibe-msg.success { color:#166534; background:#dcfce7; border-color:#86efac; }
+    .vibe-msg.error { color:#991b1b; background:#fee2e2; border-color:#fecaca; }
+    .vibe-msg.info { color:#1d4ed8; background:#dbeafe; border-color:#93c5fd; }
+
+    .vibe-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 1.2rem;
+      padding: 1.05rem;
+      box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeUp .25s ease;
+    }
+
+    .vibe-card.soft {
+      background: rgba(255, 255, 255, 0.62);
+      border-color: rgba(255, 255, 255, 0.58);
+    }
+
+    .vibe-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.72rem;
+      padding: 0.55rem 0.95rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .vibe-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .vibe-btn-primary {
+      background: linear-gradient(120deg, #4f46e5, #7c3aed);
+      color: #fff;
+      box-shadow: 0 8px 18px -8px rgba(79, 70, 229, 0.8);
+      border-color: #a78bfa;
+    }
+
+    .vibe-btn-primary:hover {
+      background: linear-gradient(120deg, #4338ca, #6d28d9);
+    }
+
+    .vibe-btn-success {
+      background: #047857;
+      color: #fff;
+    }
+
+    .vibe-btn-danger {
+      background: #be123c;
+      color: #fff;
+    }
+
+    .vibe-btn-ghost {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--txt-main);
+    }
+
+    .vibe-chip {
+      border: 1px solid var(--line);
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .vibe-hero {
+      border-radius: 1.4rem;
+      padding: 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(237, 233, 254, 0.55));
+      box-shadow: 0 18px 45px -28px rgba(37, 99, 235, 0.45);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .vibe-hero::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -50px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at center, rgba(79, 70, 229, 0.35), transparent 65%);
+      border-radius: 9999px;
+    }
+
+    .menu-card {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 1rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 14px 35px -24px rgba(15, 23, 42, 0.45);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 16px 35px -22px rgba(79, 70, 229, 0.5);
+    }
+
+    .icon-badge {
+      width: 2.45rem;
+      height: 2.45rem;
+      border-radius: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .vibe-input,
+    .vibe-input option,
+    .vibe-input textarea,
+    .vibe-input select,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="date"],
+    textarea,
+    select {
+      border: 1px solid #cbd5f5 !important;
+      border-radius: 0.72rem !important;
+      width: 100%;
+      padding: 0.58rem 0.72rem !important;
+      background: #fff;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+      font-size: 0.93rem;
+    }
+
+    .vibe-input:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #818cf8 !important;
+      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15) !important;
+    }
+
+    .fade-up {
+      animation: fadeUp .22s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 767px) {
+      .vibe-nav {
+        display: flex;
+        background: rgba(255, 255, 255, 0.86);
+      }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="text-slate-900">
+  <header class="vibe-header">
+    <div class="vibe-wrap">
+      <div class="flex items-center justify-between gap-2 py-3">
+        <a href="/" class="text-lg font-black tracking-tight" style="font-family: 'Space Grotesk', 'Manrope', sans-serif;">
+          Vibe Community
+        </a>
+        <div id="menuMain" class="vibe-nav vibe-nav-horizontal">
+          <a href="{% url 'notices:list' %}" class="menu-link">공지사항</a>
+          <a href="{% url 'posts:list' %}" class="menu-link">자유게시판</a>
+          <a href="{% url 'events:calendar' %}" class="menu-link">일정관리</a>
+          <a href="{% url 'polls:list' %}" class="menu-link">투표</a>
+          <a href="{% url 'surveys:list' %}" class="menu-link">설문</a>
+          <a href="{% url 'admin_dashboard:home' %}" class="menu-link">관리자</a>
+        </div>
+
+        <div class="text-sm flex items-center gap-2">
+          {% if user.is_authenticated %}
+            <span class="text-slate-600">안녕하세요, <span class="font-semibold">{{ user.username }}</span></span>
+            <a href="{% url 'accounts:profile' %}" class="vibe-btn vibe-btn-ghost py-1">내정보</a>
+            <a href="{% url 'accounts:logout' %}" class="vibe-btn vibe-btn-ghost py-1">로그아웃</a>
+          {% else %}
+            <a href="{% url 'accounts:login' %}" class="vibe-btn vibe-btn-ghost py-1">로그인</a>
+            <a href="{% url 'accounts:signup' %}" class="vibe-btn vibe-btn-primary py-1">회원가입</a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="vibe-wrap vibe-shell">
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          <div class="vibe-msg success">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+          <div class="vibe-msg error">{{ message }}</div>
+        {% else %}
+          <div class="vibe-msg info">{{ message }}</div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

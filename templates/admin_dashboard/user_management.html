@@ -1,0 +1,59 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% block admin_content %}
+<form method="get" class="vibe-card flex gap-2 flex-wrap" action="{% url 'admin_dashboard:users' %}">
+  <input type="text" name="q" value="{{ q }}" class="vibe-input flex-1 min-w-[180px]" placeholder="사용자 검색 (ID/이메일/표시명)">
+  <button type="submit" class="vibe-btn vibe-btn-primary">검색</button>
+</form>
+
+<article class="vibe-card">
+  <p class="text-sm text-slate-600">총 {{ user_count }}명</p>
+  <div class="mt-3 space-y-2">
+    {% for managed_user in users %}
+      <div class="rounded-lg border border-slate-200 bg-white/70 p-3">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="min-w-0">
+            <p class="font-semibold">{{ managed_user.username }}</p>
+            <p class="text-xs text-slate-500">이메일: {{ managed_user.email|default:"-" }} · 마지막 로그인: {{ managed_user.last_login|default:"미기록" }}</p>
+          </div>
+          <p class="text-xs text-slate-500">
+            상태: {% if managed_user.is_active %}활성{% else %}비활성{% endif %}
+            · 역할: {{ managed_user.role }}
+            {% if managed_user.is_staff %}· 스태프{% endif %}
+            {% if managed_user.is_superuser %}· 슈퍼유저{% endif %}
+          </p>
+        </div>
+
+        <div class="mt-2 flex flex-wrap gap-2">
+          <form method="post" action="{% url 'admin_dashboard:user_action' %}" class="flex gap-2 flex-wrap">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <input type="hidden" name="user_id" value="{{ managed_user.id }}">
+            <input type="hidden" name="action" value="set_role">
+            <select name="role" class="vibe-input">
+              <option value="USER" {% if managed_user.role == 'USER' %}selected{% endif %}>USER</option>
+              <option value="ADMIN" {% if managed_user.role == 'ADMIN' %}selected{% endif %}>ADMIN</option>
+            </select>
+            <button type="submit" class="vibe-btn vibe-btn-primary py-1">역할 변경</button>
+          </form>
+
+          <form method="post" action="{% url 'admin_dashboard:user_action' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <input type="hidden" name="user_id" value="{{ managed_user.id }}">
+            <input type="hidden" name="action" value="toggle_status">
+            {% if managed_user.is_active %}
+              <button type="submit" class="vibe-btn vibe-btn-danger py-1">비활성화</button>
+            {% else %}
+              <button type="submit" class="vibe-btn vibe-btn-success py-1">활성화</button>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-sm text-slate-500">사용자가 없습니다.</p>
+    {% endfor %}
+  </div>
+</article>
+{% endblock %}
+
