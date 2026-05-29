@@ -11,6 +11,7 @@ VIBE_SQLITE_LOGGER = "vibe.sqlite"
 logger = logging.getLogger(VIBE_SQLITE_LOGGER)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+IS_VERCEL = os.getenv("VERCEL") == "1"
 
 SECRET_KEY = "replace-me-in-production"
 DEBUG = True
@@ -86,7 +87,7 @@ ASGI_APPLICATION = "config.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": Path("/tmp/db.sqlite3") if IS_VERCEL else BASE_DIR / "db.sqlite3",
         "OPTIONS": {
             "timeout": 20.0,
             "isolation_level": "IMMEDIATE",
