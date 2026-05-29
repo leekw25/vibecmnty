@@ -8,8 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
@@ -35,7 +34,7 @@ def _require_admin(view_func):
     @login_required(login_url=reverse_lazy("accounts:login"))
     def _wrapped(request, *args, **kwargs):
         if not is_admin_user(request.user):
-            raise PermissionDenied("Admin permission is required.")
+            raise PermissionDenied("관리자 권한이 필요합니다.")
         return view_func(request, *args, **kwargs)
 
     return _wrapped
@@ -60,8 +59,7 @@ def _active_counts(now) -> dict[str, int]:
             Q(expires_at__isnull=True) | Q(expires_at__gt=now)
         ).count(),
         "upcoming_events": Event.objects.filter(
-            Q(end_date__isnull=True, start_date__gte=today)
-            | Q(end_date__gte=today)
+            Q(end_date__isnull=True, start_date__gte=today) | Q(end_date__gte=today)
         ).count(),
     }
 
@@ -77,19 +75,20 @@ def _recent_items(limit: int = 8) -> list[dict[str, object]]:
                 "actor": post.author.username,
                 "time": post.created_at,
                 "link": reverse("posts:detail", args=[post.pk]),
-                "detail": f"작성자: {post.author.username}",
+                "detail": f"작성자 {post.author.username}",
             }
         )
 
     for comment in Comment.objects.select_related("author", "post").order_by("-created_at")[:limit]:
+        title = comment.content[:60] + "..." if len(comment.content) > 60 else comment.content
         items.append(
             {
                 "kind": "댓글",
-                "title": comment.content[:60] + "…" if len(comment.content) > 60 else comment.content,
+                "title": title,
                 "actor": comment.author.username,
                 "time": comment.created_at,
                 "link": reverse("posts:detail", args=[comment.post.pk]),
-                "detail": f"댓글 대상: {comment.post.title}",
+                "detail": f"게시글 {comment.post.title}",
             }
         )
 
@@ -101,11 +100,11 @@ def _recent_items(limit: int = 8) -> list[dict[str, object]]:
                 "actor": notice.author.username,
                 "time": notice.created_at,
                 "link": reverse("notices:detail", args=[notice.pk]),
-                "detail": f"중요: {'예' if notice.is_important else '아니오'}",
+                "detail": f"중요 여부: {'중요' if notice.is_important else '일반'}",
             }
         )
 
-    for event in Event.objects.all().order_by("-created_at")[:limit]:
+    for event in Event.objects.select_related("created_by").order_by("-created_at")[:limit]:
         items.append(
             {
                 "kind": "일정",
@@ -113,7 +112,7 @@ def _recent_items(limit: int = 8) -> list[dict[str, object]]:
                 "actor": event.created_by.username if event.created_by else "시스템",
                 "time": event.created_at,
                 "link": reverse("events:detail", args=[event.pk]),
-                "detail": f"시작일: {event.start_date}",
+                "detail": f"시작일 {event.start_date}",
             }
         )
 
@@ -137,7 +136,7 @@ def _recent_items(limit: int = 8) -> list[dict[str, object]]:
                 "actor": survey.created_by.username,
                 "time": survey.created_at,
                 "link": reverse("surveys:respond", args=[survey.pk]),
-                "detail": f"문항 수: {survey.questions.count()}",
+                "detail": f"문항 수 {survey.questions.count()}",
             }
         )
 
@@ -168,7 +167,7 @@ def notice_management(request):
         if action == "delete":
             if selected_ids:
                 Notice.objects.filter(pk__in=selected_ids).delete()
-                messages.success(request, f"{len(selected_ids)}개의 공지사항이 삭제되었습니다.")
+                messages.success(request, f"{len(selected_ids)}개의 공지사항을 삭제했습니다.")
             else:
                 messages.warning(request, "삭제할 공지사항을 선택하세요.")
         return redirect("admin_dashboard:notices")
@@ -290,9 +289,7 @@ def survey_management(request):
         question_count=Count("questions"),
     ).order_by("-created_at")
     if q:
-        queryset = queryset.filter(
-            Q(title__icontains=q) | Q(description__icontains=q)
-        )
+        queryset = queryset.filter(Q(title__icontains=q) | Q(description__icontains=q))
 
     active_surveys = queryset.filter(Q(expires_at__isnull=True) | Q(expires_at__gt=now))
     closed_surveys = queryset.filter(expires_at__lte=now).exclude(expires_at__isnull=True)
@@ -360,7 +357,7 @@ def user_action(request):
                 target.save(update_fields=["role", "is_staff"])
                 messages.success(
                     request,
-                    f"{target.username}님 역할을 {target.get_role_display()}로 변경했습니다.",
+                    f"{target.username}의 역할을 {target.get_role_display()}로 변경했습니다.",
                 )
 
     elif action == "toggle_status":
@@ -370,7 +367,7 @@ def user_action(request):
             target.is_active = not target.is_active
             target.save(update_fields=["is_active"])
             state_label = "활성화" if target.is_active else "비활성화"
-            messages.success(request, f"{target.username}님 계정을 {state_label}했습니다.")
+            messages.success(request, f"{target.username} 계정을 {state_label}했습니다.")
     else:
         messages.error(request, "지원하지 않는 동작입니다.")
 
@@ -385,6 +382,6 @@ def system_management(request):
         {
             "section": "system",
             "section_title": "시스템 관리",
-            "section_description": "기본 설정 관리와 백업 도구는 추후 확장 가능한 영역입니다.",
+            "section_description": "기본 설정 관리와 백업 도구 확장을 위한 영역입니다.",
         },
     )

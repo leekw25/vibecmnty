@@ -20,9 +20,7 @@
       --card: rgba(255, 255, 255, 0.78);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -35,12 +33,11 @@
         linear-gradient(160deg, #f8fafc 0%, #f3f4ff 45%, #fff5f0 100%);
     }
 
-    a {
-      text-decoration: none;
-    }
+    a { text-decoration: none; }
+    code { word-break: break-word; }
 
     .vibe-wrap {
-      max-width: 72rem;
+      max-width: 80rem;
       margin: 0 auto;
       padding: 0 1.25rem;
     }
@@ -61,45 +58,33 @@
     }
 
     .vibe-nav {
-      margin-top: 0.65rem;
       border-radius: 1rem;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.68);
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+      flex-wrap: wrap;
+      gap: 0.35rem;
       padding: 0.5rem;
-      overflow-x: auto;
-      flex-wrap: nowrap;
       animation: fadeIn .2s ease both;
     }
 
-    .vibe-nav-horizontal {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
     .menu-link {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
       border-radius: 0.7rem;
       padding: 0.55rem 0.75rem;
       font-size: 0.95rem;
+      line-height: 1.25;
       color: var(--txt-main);
       transition: all .2s ease;
+      white-space: nowrap;
     }
 
     .menu-link:hover {
       background: rgba(79, 70, 229, 0.10);
       color: var(--accent);
       transform: translateX(2px);
-    }
-
-    .vibe-nav-desk {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      flex-wrap: wrap;
     }
 
     .vibe-msg {
@@ -111,6 +96,8 @@
       border: 1px solid;
       padding: 0.7rem 0.9rem;
       font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
     }
 
     .vibe-msg.success { color:#166534; background:#dcfce7; border-color:#86efac; }
@@ -118,6 +105,7 @@
     .vibe-msg.info { color:#1d4ed8; background:#dbeafe; border-color:#93c5fd; }
 
     .vibe-card {
+      min-width: 0;
       border: 1px solid var(--line);
       background: var(--card);
       border-radius: 1.2rem;
@@ -126,6 +114,7 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       animation: fadeUp .25s ease;
+      overflow-wrap: anywhere;
     }
 
     .vibe-card.soft {
@@ -137,18 +126,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 0.35rem;
+      min-width: 0;
       border-radius: 0.72rem;
       padding: 0.55rem 0.95rem;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.9rem;
+      line-height: 1.25;
+      text-align: center;
       transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
       cursor: pointer;
       border: 1px solid transparent;
+      white-space: nowrap;
     }
 
-    .vibe-btn:hover {
-      transform: translateY(-1px);
-    }
+    .vibe-btn:hover { transform: translateY(-1px); }
 
     .vibe-btn-primary {
       background: linear-gradient(120deg, #4f46e5, #7c3aed);
@@ -157,35 +149,23 @@
       border-color: #a78bfa;
     }
 
-    .vibe-btn-primary:hover {
-      background: linear-gradient(120deg, #4338ca, #6d28d9);
-    }
-
-    .vibe-btn-success {
-      background: #047857;
-      color: #fff;
-    }
-
-    .vibe-btn-danger {
-      background: #be123c;
-      color: #fff;
-    }
-
-    .vibe-btn-ghost {
-      border-color: var(--line);
-      background: rgba(255, 255, 255, 0.75);
-      color: var(--txt-main);
-    }
+    .vibe-btn-primary:hover { background: linear-gradient(120deg, #4338ca, #6d28d9); }
+    .vibe-btn-success { background: #047857; color: #fff; }
+    .vibe-btn-danger { background: #be123c; color: #fff; }
+    .vibe-btn-ghost { border-color: var(--line); background: rgba(255, 255, 255, 0.75); color: var(--txt-main); }
 
     .vibe-chip {
+      display: inline-flex;
       border: 1px solid var(--line);
       padding: 0.15rem 0.5rem;
       border-radius: 9999px;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .vibe-hero {
+      min-width: 0;
       border-radius: 1.4rem;
       padding: 1.6rem;
       border: 1px solid rgba(255, 255, 255, 0.7);
@@ -250,6 +230,7 @@
       outline: none;
       transition: border-color .2s ease, box-shadow .2s ease;
       font-size: 0.93rem;
+      min-width: 0;
     }
 
     .vibe-input:focus,
@@ -260,24 +241,267 @@
       box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15) !important;
     }
 
-    .fade-up {
-      animation: fadeUp .22s ease;
+    .admin-shell {
+      display: grid;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
     }
 
+    .admin-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      height: fit-content;
+    }
+
+    .admin-sidebar-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #334155;
+    }
+
+    .admin-sidebar-copy,
+    .admin-description,
+    .admin-note,
+    .admin-count,
+    .admin-item-meta,
+    .admin-empty {
+      color: #64748b;
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+
+    .admin-nav {
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 1rem;
+    }
+
+    .admin-nav-link {
+      width: 100%;
+      justify-content: flex-start;
+      white-space: normal;
+      line-height: 1.35;
+    }
+
+    .admin-nav-link.is-active {
+      background: rgba(79, 70, 229, 0.12);
+      color: #4338ca;
+      font-weight: 800;
+    }
+
+    .admin-main {
+      display: grid;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    .admin-hero h1 {
+      position: relative;
+      margin-top: 0.35rem;
+      max-width: 100%;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-kicker {
+      position: relative;
+      color: #4f46e5;
+      font-size: 0.875rem;
+      font-weight: 800;
+    }
+
+    .admin-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .admin-stat-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+
+    .admin-stat-card strong {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 1.9rem;
+      font-weight: 900;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .admin-stack,
+    .admin-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .admin-section-title {
+      margin: 0 0 0.8rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .admin-action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
+
+    .admin-toolbar,
+    .admin-actions,
+    .admin-inline-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .admin-toolbar .vibe-input {
+      flex: 1 1 18rem;
+      min-width: 0;
+    }
+
+    .admin-list-item {
+      min-width: 0;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      border-radius: 0.8rem;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 0.8rem;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .admin-row-body {
+      display: grid;
+      gap: 0.25rem;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .admin-row-meta {
+      flex: 0 1 18rem;
+      text-align: right;
+    }
+
+    .admin-item-title {
+      margin: 0;
+      font-weight: 800;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-item-content {
+      margin-top: 0.25rem;
+      font-size: 0.925rem;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-detail-link {
+      display: inline-flex;
+      margin-top: 0.35rem;
+      color: #4338ca;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .admin-check-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .admin-check-row input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .fade-up { animation: fadeUp .22s ease; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
+    @media (max-width: 900px) {
+      .admin-stat-grid,
+      .admin-two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 767px) {
+      .vibe-wrap { padding: 0 0.85rem; }
+
+      .vibe-header .vibe-wrap > div {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
       .vibe-nav {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .admin-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        position: static;
+      }
+
+      .admin-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .admin-stat-grid,
+      .admin-two-column,
+      .admin-action-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-row,
+      .admin-check-row {
         display: flex;
-        background: rgba(255, 255, 255, 0.86);
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .admin-row-meta {
+        text-align: left;
+      }
+
+      .admin-actions .vibe-btn,
+      .admin-action-grid .vibe-btn,
+      .admin-inline-form .vibe-btn,
+      .admin-toolbar .vibe-btn {
+        width: 100%;
       }
     }
   </style>
@@ -290,7 +514,7 @@
         <a href="/" class="text-lg font-black tracking-tight" style="font-family: 'Space Grotesk', 'Manrope', sans-serif;">
           Vibe Community
         </a>
-        <div id="menuMain" class="vibe-nav vibe-nav-horizontal">
+        <div id="menuMain" class="vibe-nav">
           <a href="{% url 'notices:list' %}" class="menu-link">공지사항</a>
           <a href="{% url 'posts:list' %}" class="menu-link">자유게시판</a>
           <a href="{% url 'events:calendar' %}" class="menu-link">일정관리</a>
@@ -299,10 +523,10 @@
           <a href="{% url 'admin_dashboard:home' %}" class="menu-link">관리자</a>
         </div>
 
-        <div class="text-sm flex items-center gap-2">
+        <div class="text-sm flex items-center gap-2 flex-wrap">
           {% if user.is_authenticated %}
             <span class="text-slate-600">안녕하세요, <span class="font-semibold">{{ user.username }}</span></span>
-            <a href="{% url 'accounts:profile' %}" class="vibe-btn vibe-btn-ghost py-1">내정보</a>
+            <a href="{% url 'accounts:profile' %}" class="vibe-btn vibe-btn-ghost py-1">내 정보</a>
             <a href="{% url 'accounts:logout' %}" class="vibe-btn vibe-btn-ghost py-1">로그아웃</a>
           {% else %}
             <a href="{% url 'accounts:login' %}" class="vibe-btn vibe-btn-ghost py-1">로그인</a>
@@ -310,7 +534,6 @@
           {% endif %}
         </div>
       </div>
-
     </div>
   </header>
 

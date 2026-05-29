@@ -1,56 +1,54 @@
 {% extends "admin_dashboard/base.html" %}
 
 {% block admin_content %}
-<section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  <article class="vibe-card">
-    <p class="text-sm text-slate-500">총 회원 수</p>
-    <p class="mt-1 text-3xl font-black">{{ stats.total_users }}</p>
+<section class="admin-stat-grid">
+  <article class="vibe-card admin-stat-card">
+    <p>총 회원 수</p>
+    <strong>{{ stats.total_users }}</strong>
   </article>
-  <article class="vibe-card">
-    <p class="text-sm text-slate-500">오늘 새 게시글 수</p>
-    <p class="mt-1 text-3xl font-black">{{ stats.today_posts }}</p>
+  <article class="vibe-card admin-stat-card">
+    <p>오늘 새 게시글 수</p>
+    <strong>{{ stats.today_posts }}</strong>
   </article>
-  <article class="vibe-card">
-    <p class="text-sm text-slate-500">진행중인 투표/설문 수</p>
-    <p class="mt-1 text-3xl font-black">{{ stats.open_polls }} / {{ stats.open_surveys }}</p>
+  <article class="vibe-card admin-stat-card">
+    <p>진행중인 투표 / 설문</p>
+    <strong>{{ stats.open_polls }} / {{ stats.open_surveys }}</strong>
   </article>
-  <article class="vibe-card">
-    <p class="text-sm text-slate-500">다가오는 일정 수</p>
-    <p class="mt-1 text-3xl font-black">{{ stats.upcoming_events }}</p>
+  <article class="vibe-card admin-stat-card">
+    <p>다가오는 일정 수</p>
+    <strong>{{ stats.upcoming_events }}</strong>
   </article>
 </section>
 
-<section class="grid gap-4 lg:grid-cols-2">
+<section class="admin-two-column">
   <article class="vibe-card">
-    <div class="flex items-center justify-between">
-      <h2 class="font-bold">빠른 작업 링크</h2>
-    </div>
-    <div class="mt-3 grid gap-2 sm:grid-cols-2">
-      <a href="{% url 'admin_dashboard:notices' %}" class="vibe-btn vibe-btn-primary w-full">공지사항 관리</a>
-      <a href="{% url 'admin_dashboard:posts' %}" class="vibe-btn vibe-btn-ghost w-full">게시글/댓글 삭제</a>
-      <a href="{% url 'admin_dashboard:events' %}" class="vibe-btn vibe-btn-ghost w-full">일정 생성/수정</a>
-      <a href="{% url 'admin_dashboard:polls' %}" class="vibe-btn vibe-btn-ghost w-full">투표 관리</a>
-      <a href="{% url 'admin_dashboard:surveys' %}" class="vibe-btn vibe-btn-ghost w-full">설문조사 관리</a>
-      <a href="{% url 'admin_dashboard:users' %}" class="vibe-btn vibe-btn-ghost w-full">사용자 권한/상태</a>
-      <a href="{% url 'admin_dashboard:system' %}" class="vibe-btn vibe-btn-ghost w-full">시스템 설정</a>
-      <a href="/admin/" class="vibe-btn vibe-btn-success w-full">Django Admin</a>
+    <h2 class="admin-section-title">빠른 작업 링크</h2>
+    <div class="admin-action-grid">
+      <a href="{% url 'admin_dashboard:notices' %}" class="vibe-btn vibe-btn-primary">공지사항 관리</a>
+      <a href="{% url 'admin_dashboard:posts' %}" class="vibe-btn vibe-btn-ghost">게시글/댓글 삭제</a>
+      <a href="{% url 'admin_dashboard:events' %}" class="vibe-btn vibe-btn-ghost">일정 생성/수정</a>
+      <a href="{% url 'admin_dashboard:polls' %}" class="vibe-btn vibe-btn-ghost">투표 관리</a>
+      <a href="{% url 'admin_dashboard:surveys' %}" class="vibe-btn vibe-btn-ghost">설문조사 관리</a>
+      <a href="{% url 'admin_dashboard:users' %}" class="vibe-btn vibe-btn-ghost">사용자 권한/상태</a>
+      <a href="{% url 'admin_dashboard:system' %}" class="vibe-btn vibe-btn-ghost">시스템 설정</a>
+      <a href="/admin/" class="vibe-btn vibe-btn-success">Django Admin</a>
     </div>
   </article>
 
   <article class="vibe-card">
-    <h2 class="font-bold">최근 활동 피드</h2>
-    <ul class="mt-3 space-y-2 text-sm">
+    <h2 class="admin-section-title">최근 활동 피드</h2>
+    <ul class="admin-list">
       {% for item in recent_activities %}
-        <li class="rounded-lg border border-slate-200 bg-white/60 p-2">
-          <div class="font-semibold">{{ item.kind }} · {{ item.title }}</div>
-          <div class="text-slate-600 text-xs">
+        <li class="admin-list-item">
+          <div class="admin-item-title">{{ item.kind }} · {{ item.title }}</div>
+          <div class="admin-item-meta">
             {{ item.detail }}{% if item.actor %} · {{ item.actor }}{% endif %} ·
-            <span class="font-medium">{{ item.time|date:'Y-m-d H:i' }}</span>
+            <span>{{ item.time|date:'Y-m-d H:i' }}</span>
           </div>
-          <a href="{{ item.link }}" class="inline-block mt-1 text-indigo-700 text-xs">상세 보기 →</a>
+          <a href="{{ item.link }}" class="admin-detail-link">상세 보기</a>
         </li>
       {% empty %}
-        <li class="rounded-lg border border-slate-200 bg-white/60 p-2 text-slate-500">활동 내역이 없습니다.</li>
+        <li class="admin-list-item muted">활동 내역이 없습니다.</li>
       {% endfor %}
     </ul>
   </article>
